@@ -45,10 +45,8 @@ public class BoardScanner {
                 return checkRow(option, count, player, board, ++r, --c);
             case 4: // travel West
                 return checkRow(option, count, player, board, r, --c);
-            case 5: // travel Northwest
+            default: // travel Northwest
                 return checkRow(option, count, player, board, --r, --c);
-            default: // travel North
-                return checkRow(option, count, player, board, --r, c);
         }
     }
 }
