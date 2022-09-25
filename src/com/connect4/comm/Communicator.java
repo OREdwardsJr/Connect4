@@ -1,6 +1,10 @@
 package com.connect4.comm;
 
+import com.apps.util.Prompter;
 import com.connect4.Player;
+import com.connect4.Player.*;
+
+import java.util.Scanner;
 
 public class Communicator {
     // this class will be used to gather input from user
@@ -9,13 +13,15 @@ public class Communicator {
      */
 
     private static final Communicator COMM = new Communicator();
+    private static final Prompter prompter = new Prompter(new Scanner(System.in)); // TODO Hency : use for user input query
 
     public static Communicator newInstance() {
         return COMM;
     }
 
-    public String newPlayerName() {
-        String playerName = "prompt user for name";
+    public String newPlayerName() { //TODO Hency: to finish this method
+        String playerName = prompter.prompt("Please enter name: "); //"prompt user for name"
+
 
         // prompt for username. if it's "" then return CPU
 
