@@ -17,12 +17,39 @@ public class Communicator {
     final int MAXPLAYERS = 2;// TODO This may be unnecessary please discuss and then delete.
 
     private static final Communicator COMM = new Communicator();
-    private static final Prompter prompter = new Prompter(new Scanner(System.in)); //
+    private static final Prompter prompter = new Prompter(new Scanner(System.in));
 
     List<Player> gamePlayers = new ArrayList<>();
 
     public static Communicator newInstance() {
         return COMM;
+    }
+
+    public String selectDifficulty() {
+
+        String level = "2";
+
+        boolean quit = false;
+        while (!quit){
+            String selectLevel = prompter.prompt("Select number for difficulty level:\n1-Easy\n2-Medium\n3-Hard\n");
+            switch (selectLevel) {
+                case ("1"):
+                    level = "Easy";
+                    quit = true;
+                    break;
+                case ("2"):
+                    level = "Medium";
+                    quit = true;
+                    break;
+                case ("3"):
+                    level = "Hard";
+                    quit = true;
+                    break;
+                default:
+                    System.out.println("Invalid input, please provide [1] for Easy, [2] for Medium or [3] for Hard.");
+            }
+        }
+        return level;
     }
 
     public String newPlayerName() {

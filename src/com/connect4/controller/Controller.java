@@ -58,7 +58,7 @@ class Controller {
 
             // probably need to throw some type of error somewhere
             while (!validMove) {
-                choice = player.takeTurn(BOARD);
+                //choice = player.takeTurn(BOARD);
                 validMove = BOARD.validMove(choice);
             }
 

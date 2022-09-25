@@ -19,7 +19,7 @@ public class Player {
     }
 
     // business methods
-    public int takeTurn(Board board) {
+   /* public int takeTurn(Board board) {
         // returns the column index choice
 
         // CPU logic would go here
@@ -43,7 +43,7 @@ public class Player {
 
         return CompLogic.medium(board, this.getID());
 
-    }
+    }*/
 
     public void announceVictory() {
         // print celebration for player
