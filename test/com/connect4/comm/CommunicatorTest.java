@@ -9,31 +9,64 @@ import java.util.Scanner;
 
 class CommunicatorTest {
     public static void main(String[] args) {
-        //TODO: list is not populating correctly
+
+
+        /*final int MAXPLAYERS = 2;
         Prompter prompter = new Prompter(new Scanner(System.in));
-        List<Player> players = new ArrayList<>();
+        List<Player> gamePlayers = new ArrayList<>();
         Player player = new Player();
 
-        for (int i = 1; i < 3; i++){
-            String name =prompter.prompt("Please enter name: ");
-            int id= i;
-            /*
-             * From Orlando - I haven't tested this class. However, I'm guessing that
-             * the for loop is printing out the same name below (line 34)?
-             * If yes, it may be that everytime you call setName and setId
-             * you are changing it on the same object. You're storing the same object
-             * in the array 3 times. So, when you change the name and ID on one then
-             * you change it on all. I'd recommend that you uncomment line 29
-             * and comment out lines 30 and 31. See if that works.
-             */
-            // player = New Player(name, id)
-            player.setName(name); // comment out
-            player.setID(id);     // comment out
-            players.add(player);
+        for (int i = 0; i < MAXPLAYERS; i++) {
+            int idPlus=i+1;
+            player = new Player((prompter.prompt(("Please enter name: "))),idPlus);
+            if(player.getName().equals("")){
+                player.setName("CPU");
+                gamePlayers.add(player);
+            }
+            else{
+                gamePlayers.add(player);
+            }
         }
-        for (Player item: players){
-            System.out.println(player.getName());
+        for(Player item:gamePlayers){
+            System.out.println(item);
+        }*/
+
+
+
+        // THIS IS TO TEST SINGLE PLAYER ENTRY
+        Prompter prompter = new Prompter(new Scanner(System.in));
+        List<Player> gamePlayers = new ArrayList<>();
+
+
+        Player player = new Player();
+        int id = 1;
+
+        if (gamePlayers.isEmpty()) {
+            player.setName(prompter.prompt("Please enter name: "));
+            player.setID(id);
+            if (player.getName().equals("")) {
+                player.setName("CPU");
+                gamePlayers.add(player);
+            } else {
+                gamePlayers.add(player);
+            }
+        } else {
+            id++;
+            player = new Player((prompter.prompt(("Please enter name: "))), id);
         }
+
+
+        // prompt for username. if it's "" then return CPU
+
+
+        System.out.println(player.getName());
+
+
+
+
     }
+
+
+
 
 }
