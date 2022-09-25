@@ -4,6 +4,8 @@ import com.apps.util.Prompter;
 import com.connect4.Player;
 import com.connect4.Player.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Communicator {
@@ -12,20 +14,36 @@ public class Communicator {
      *   that causes a vulnerability.
      */
 
+    final int MAXPLAYERS = 2;// TODO This may be unnecessary please discuss and then delete.
+
     private static final Communicator COMM = new Communicator();
-    private static final Prompter prompter = new Prompter(new Scanner(System.in)); // TODO Hency : use for user input query
+    private static final Prompter prompter = new Prompter(new Scanner(System.in)); //
+
+    List<Player> gamePlayers = new ArrayList<>();
 
     public static Communicator newInstance() {
         return COMM;
     }
 
-    public String newPlayerName() { //TODO Hency: to finish this method
-        String playerName = prompter.prompt("Please enter name: "); //"prompt user for name"
+    public String newPlayerName() {
+        Player player = new Player();
+        int id = 1;
 
+        if (gamePlayers.isEmpty()) { // Check if Object ArrayList is empty. This is to facilitate the assignment of ID's
+            player.setName(prompter.prompt("Please enter name: "));
+            player.setID(id);
+            if (player.getName().equals("")) {//This will check if the Player is Human or CPU
+                player.setName("CPU");
+                gamePlayers.add(player);
+            } else {
+                gamePlayers.add(player);
+            }
+        } else { // If the Object ArrayList is not empty, then the ID field will increase by 1, which will identify Player#2
+            id++;
+            player = new Player((prompter.prompt(("Please enter name: "))), id);
+        }
 
-        // prompt for username. if it's "" then return CPU
-
-        return playerName;
+        return player.getName(); // This will return the current player entry
     }
 
     public boolean playNewGame() {

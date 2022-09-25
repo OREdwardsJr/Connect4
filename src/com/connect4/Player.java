@@ -4,9 +4,9 @@ import com.connect4.comm.Communicator;
 
 public class Player {
 
-    private static String name;
+    private String name;
     private static final Communicator COMM = Communicator.newInstance();
-    private static int ID;
+    private int ID;
 
     // ctor
     public  Player(){
@@ -64,7 +64,7 @@ public class Player {
 
     // Getter and Setter
     public void setName(String name) {
-        Player.name = name;
+        this.name = name;
     }
 
     public String getName() {
@@ -83,6 +83,12 @@ public class Player {
          * While names may be changed, it is not expected that the
          * ids are ever changed once players have been instantiated.
          */
-        Player.ID = ID;
+        this.ID = ID;
     }
+
+    @Override
+    public String toString(){
+        return "Player Name: " +getName() + " is " + "ID#: "+getID();
+    }
+
 }
