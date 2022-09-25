@@ -4,29 +4,13 @@ import com.connect4.Board;
 import com.connect4.Player;
 
 public class BoardScanner {
-    private static int rows = Board.newInstance().getRows();
-    private static int columns = Board.newInstance().getColumns();
 
-    // private static final Scanner SCANNER = new Scanner(rows, columns);
+    private BoardScanner(){};
 
-
-    public BoardScanner() {
-    }
-
-    public BoardScanner(int rows, int cols) {
-        this.rows = rows;
-        this.columns = cols;
-    }
-
-//    public Scanner newInstance(int rows, int cols) {
-//        return SCANNER;
-//    }
-
-    public boolean checkRow(int option, int count, Player player, int[][] board, int r, int c) {
+    public static boolean checkRow(int option, int count, Player player, int[][] board, int r, int c) {
         // recursive method that travels in a direction based on option while count < 4
-        if ((r < 0 || r >= rows) ||
-            (c < 0 || c >= columns) ||
-            // (count > 4) ||
+        if ((r < 0 || r >= board.length) ||
+            (c < 0 || c >= board[0].length) ||
             (player.getID() != board[r][c]))
             return false;
 

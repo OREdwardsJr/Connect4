@@ -9,8 +9,6 @@ public class Board {
     private final int columns = 7;
     private final int rows = 6;
 
-    private final BoardScanner BOARDSCANNER = new BoardScanner(rows, columns);
-
     private int[][] board = new int[rows][columns];
 
     private final int i = rows - 1;
@@ -35,7 +33,7 @@ public class Board {
         boolean result = false;
 
         for (int i = 0; i < 7; i++) {
-            if (!result) result = BOARDSCANNER.checkRow(i, 0, player, this.board, rowTracker[column], column);
+            if (!result) result = BoardScanner.checkRow(i, 0, player, this.board, rowTracker[column], column);
             else break;
         }
         return result;
