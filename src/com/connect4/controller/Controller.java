@@ -4,7 +4,7 @@ import com.connect4.Board;
 import com.connect4.Player;
 import com.connect4.comm.Communicator;
 
- class Controller {
+class Controller {
 
     private static boolean newGame = true;
 
@@ -25,22 +25,22 @@ import com.connect4.comm.Communicator;
         COMM.sayGoodBye();
     }
 
-     private static void setupGame() {
-         BOARD.clear();
+    private static void setupGame() {
+        BOARD.clear();
 
-         // Create players
-         // Additional properties can be set in the future (EG: color or slot symbol)
-         player1 = new Player(COMM.newPlayerName(), 1);
-         player2 = new Player(COMM.newPlayerName(), 2);
+        // Create players
+        // Additional properties can be set in the future (EG: color or slot symbol)
+        player1 = new Player(COMM.newPlayerName(), 1);
+        player2 = new Player(COMM.newPlayerName(), 2);
 
-         // Randomly assign who's player1 vs player2 via swap
-         if ((int) (Math.random() * 100) % 2 != 0) {
-             // Swap names
-             String temp = player1.getName();
-             player1.setName(player2.getName());
-             player2.setName(temp);
-         }
-         COMM.announcePlayers(player1, player2);
+        // Randomly assign who's player1 vs player2 via swap
+        if ((int) (Math.random() * 100) % 2 != 0) {
+            // Swap names
+            String temp = player1.getName();
+            player1.setName(player2.getName());
+            player2.setName(temp);
+        }
+        COMM.announcePlayers(player1, player2);
     }
 
     private static void playGame() {
