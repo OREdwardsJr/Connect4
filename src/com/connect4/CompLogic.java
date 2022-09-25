@@ -11,7 +11,7 @@ class CompLogic {
         List<Integer> columnChoice = swapNums(board[0].length);
 
         for (Integer i : columnChoice) {
-            if (board[0][i] != 0) {
+            if (board[0][i] >= 0) {
                 choice = i;
                 break;
             }
