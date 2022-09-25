@@ -23,10 +23,10 @@ public class Board {
         return (column < rowTracker.length && rowTracker[column] >= 0);
     }
 
-    public void occupySlot(Player player, int column) {
-        board[rowTracker[column]][column] = player.getID();
+    public void occupySlot(Player player, int columnChoice) {
+        board[rowTracker[columnChoice]][columnChoice] = player.getID();
 
-        rowTracker[column]--;
+        rowTracker[columnChoice]--;
     }
 
     public boolean winnerDetected(Player player, int column) {
