@@ -19,24 +19,30 @@ public class Player {
     }
 
     // business methods
-    public int takeTurn() {
+    public int takeTurn(Board board) {
         // returns the column index choice
 
         // CPU logic would go here
-        if ("CPU".equals(getName())) return cpuTakeTurn();
+        if ("CPU".equals(getName())) return cpuTakeTurn(board.get());
 
         // Grabs column choice from user accounting for user entry being 1-indexed based
         // should probably return columnNumber - 1 within COMM.takeTurn();
         return COMM.takeTurn() - 1;
     }
 
-    private int cpuTakeTurn() {
+    private int cpuTakeTurn(int[][] board) {
         // returns a valid move
         // would need access to board to find open slots
         // turns could be based on difficultly level
         int choice = 0;
 
-        return choice;
+        // need conditional for choosing between different levels EG: Easy, Medium, Hard
+        if ("easy") {
+            return CompLogic.easy(board, this.getID());
+        }
+
+        return CompLogic.medium(board, this.getID());
+
     }
 
     public void announceVictory() {
