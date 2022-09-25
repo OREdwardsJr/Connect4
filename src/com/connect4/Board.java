@@ -44,15 +44,8 @@ public class Board {
         rowTracker = new int[] {i, i, i, i, i, i, i};
     }
 
-    public int getColumns() {
-        return columns - 1;
-    }
-
-    public int getRows() {
-        return rows - 1;
-    }
-
     public int[][] get() {
+        // most likely to be used for displaying the board
         return board;
     }
 
