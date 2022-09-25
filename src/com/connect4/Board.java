@@ -14,7 +14,9 @@ public class Board {
     private final BoardScanner BOARDSCANNER = new BoardScanner(rows, columns);
 
     private int[][] board = new int[rows][columns];
-    private int[] indices = new int[columns]; // tracks how many entries are in each column
+
+    private final int i = rows - 1;
+    private int[] indices = new int[] {i, i, i, i, i, i, i}; // tracks next available row for column entries
 
     // Business methods
     public static Board newInstance() {
@@ -28,7 +30,7 @@ public class Board {
     public void occupySlot(Player player, int column) {
         board[indices[column]][column] = player.getID();
 
-        indices[column] += 1;
+        indices[column]--;
     }
 
     public boolean winnerDetected(Player player, int column) {
