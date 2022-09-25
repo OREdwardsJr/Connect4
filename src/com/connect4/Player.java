@@ -9,6 +9,10 @@ public class Player {
     private static int ID;
 
     // ctor
+    public  Player(){
+        //default
+    };
+
     public Player(String name, int id) {
         setName(name);
         setID(id);
@@ -65,7 +69,7 @@ public class Player {
 
 
 
-    private static void setID(int ID) {
+    public void setID(int ID) { //TODO Hency:  Discuss on whether or not the setID field is private and static
         /* the id is important because the corresponding symbol is based
          * on the player's id. EG: X for id 1 and O for id 2.
          * While names may be changed, it is not expected that the
