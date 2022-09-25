@@ -37,18 +37,9 @@ public class Player {
         // print celebration for player
     }
 
-    public void announceVictory(boolean playerVictory) {
-        if (playerVictory) {
-            // announce player name wins
-            System.out.println();
-        }
-        else {
-            // announce tie
-
-        }
+    public void announceVictory(boolean winnerDetected) {
+        COMM.announceVictory(this, winnerDetected);
     }
-
-
 
     // Getter and Setter
     public void setName(String name) {
