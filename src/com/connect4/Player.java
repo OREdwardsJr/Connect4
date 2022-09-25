@@ -33,10 +33,6 @@ public class Player {
         return choice;
     }
 
-    public void announceVictory() {
-        // print celebration for player
-    }
-
     public void announceVictory(boolean winnerDetected) {
         COMM.announceVictory(this, winnerDetected);
     }
