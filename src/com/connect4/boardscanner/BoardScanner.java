@@ -24,8 +24,6 @@ public class BoardScanner {
 
     public boolean checkRow(int option, int count, Player player, int[][] board, int r, int c) {
         // recursive method that travels in a direction based on option while count < 4
-        boolean result = false;
-
         if ((r < 0 || r >= rows) ||
             (c < 0 || c >= columns) ||
             // (count > 4) ||
