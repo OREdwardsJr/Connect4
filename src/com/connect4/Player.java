@@ -25,7 +25,7 @@ public class Player {
         // CPU logic would go here
         if ("CPU".equals(getName())) return cpuTakeTurn();
 
-        // accounting for user entry being 1-indexed based
+        // Grabs column choice from user accounting for user entry being 1-indexed based
         // should probably return columnNumber - 1 within COMM.takeTurn();
         return COMM.takeTurn() - 1;
     }
