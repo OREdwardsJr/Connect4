@@ -54,17 +54,16 @@ class Controller {
         while (startNewRound) {
             validMove = false;
 
-            player = (turns % 2 == 0) ? player1 : player2;
+            player = (turns++ % 2 == 0) ? player1 : player2;
 
             // probably need to throw some type of error somewhere
             while (!validMove) {
-                choice = player.takeTurn() - 1; // accounting for user entry being 1-indexed based
+                choice = player.takeTurn();
                 validMove = BOARD.validMove(choice);
             }
 
             BOARD.occupySlot(player, choice);
 
-            turns++;
             winnerDetected = BOARD.winnerDetected(player, choice);
 
             startNewRound = (!winnerDetected && turns < 42);
