@@ -45,7 +45,7 @@ public class Board {
 
     public void clear() {
         board = new int[rows][columns];
-        indices = new int[columns];
+        indices = new int[] {i, i, i, i, i, i, i};
     }
 
     public int getColumns() {
