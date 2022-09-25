@@ -24,7 +24,7 @@ public class Board {
     }
 
     public boolean validMove(int column) {
-        return (column < indices.length && indices[column] < 6);
+        return (column < indices.length && indices[column] >= 0);
     }
 
     public void occupySlot(Player player, int column) {
