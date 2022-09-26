@@ -34,7 +34,7 @@ public class Board {
         int longestChain = 0;
 
         for (int i = 0; i < 4; i++) {
-            if (longestChain < 3) longestChain = BoardScanner.checkRow(i, 0, player, get(), rowTracker[column], column);
+            if (longestChain < 3) longestChain = BoardScanner.checkRow(this, i, 0, player, rowTracker[column], column);
             else break;
         }
         return (longestChain >= 3);
@@ -48,6 +48,10 @@ public class Board {
     public int[][] get() {
         // most likely to be used for displaying the board
         return board;
+    }
+
+    public int[] columnEntries() {
+        return this.rowTracker;
     }
 
 }
