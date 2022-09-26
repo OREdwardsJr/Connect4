@@ -12,7 +12,7 @@ class Display {
         //String[][]  values = new String[6][7];    // declared to have 6 rows and 7 columns.
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
-                values[i][j] = String.valueOf(' '); // storing characters. Whitespace.
+                values[i][j] = String.valueOf(" "); // storing characters. Whitespace.
             }
         }
     }
