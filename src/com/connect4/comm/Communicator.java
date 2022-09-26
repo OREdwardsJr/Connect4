@@ -90,6 +90,15 @@ public class Communicator {
         System.out.println("Player 2 is: " + p2.getName());
     }
 
+    public void announceVictory(Player player, boolean winnerDetected) {
+        if (winnerDetected) {
+            System.out.println(player.getName() + " wins!");
+        }
+        else {
+            System.out.println("Tie game!");
+        }
+    }
+
     public void sayGoodBye() {
         System.out.println("goodbye");
     }
