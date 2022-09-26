@@ -24,7 +24,7 @@ public class Communicator {
         return COMM;
     }
 
-    public String selectDifficulty() {
+    public String selectDifficulty() { //
 
         String level = "1";
 
