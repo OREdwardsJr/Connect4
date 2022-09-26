@@ -30,13 +30,14 @@ public class Board {
     }
 
     public boolean winnerDetected(Player player, int column) {
-        boolean result = false;
+        // tracks the longest chain where slots are previously filled by player's id next to empty slot
+        int longestChain = 0;
 
-        for (int i = 0; i < 7; i++) {
-            if (!result) result = BoardScanner.checkRow(i, 0, player, this.board, rowTracker[column], column);
+        for (int i = 0; i < 4; i++) {
+            if (longestChain < 3) longestChain = BoardScanner.checkRow(i, 0, player, get(), rowTracker[column], column);
             else break;
         }
-        return result;
+        return (longestChain >= 3);
     }
 
     public void clear() {
