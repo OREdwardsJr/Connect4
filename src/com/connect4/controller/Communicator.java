@@ -1,8 +1,7 @@
-package com.connect4.comm;
+package com.connect4.controller;
 
 import com.apps.util.Prompter;
 import com.connect4.Player;
-import com.connect4.Player.*;
 
 import java.util.ArrayList;
 import java.util.List;

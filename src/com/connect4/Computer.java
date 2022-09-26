@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class CompLogic {
+class Computer {
 
     public static int easy(Board board, int id) {
         int choice = 0;

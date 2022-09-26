@@ -2,7 +2,6 @@ package com.connect4.controller;
 
 import com.connect4.Board;
 import com.connect4.Player;
-import com.connect4.comm.Communicator;
 
 class Controller {
 
