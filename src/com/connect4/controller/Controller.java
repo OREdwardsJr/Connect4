@@ -33,6 +33,7 @@ class Controller {
         player1 = new Player(COMM.newPlayerName(), 1);
         player2 = new Player(COMM.newPlayerName(), 2);
 
+
         // Randomly assign who's player1 vs player2 via swap
         if ((int) (Math.random() * 100) % 2 != 0) {
             // Swap names
@@ -58,7 +59,7 @@ class Controller {
 
             // probably need to throw some type of error somewhere
             while (!validMove) {
-                //choice = player.takeTurn(BOARD);
+                choice = player.takeTurn(BOARD);
                 validMove = BOARD.validMove(choice);
             }
 
