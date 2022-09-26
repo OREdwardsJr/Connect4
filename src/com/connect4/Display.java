@@ -16,7 +16,7 @@ class Display {
         for (int i = 0; i < 7; i++) {
             System.out.print("  " + (i+1) + " ");
         }
-        System.out.println();
+        System.out.println();   // testing for commit.
 
         for (int j = 0; j <7; j++) {
             System.out.print("+---");   // used to close in the top.
