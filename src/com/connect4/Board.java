@@ -13,7 +13,7 @@ public class Board {
     private int[] rowTracker = new int[] {i, i, i, i, i, i, i}; // tracks next available row for column entries
 
     // Business methods
-    public boolean validMove(int column) {
+    public boolean validMove(int column) { //TODO move this to BoardScanner
         return (column < rowTracker.length && rowTracker[column] >= 0);
     }
 
