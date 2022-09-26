@@ -9,9 +9,11 @@ public class Player {
     private int ID;
 
     // ctor
-    public  Player(){
+    public Player() {
         //default
-    };
+    }
+
+    ;
 
     public Player(String name, int id) {
         setName(name);
@@ -19,8 +21,9 @@ public class Player {
     }
 
     // business methods
-   /* public int takeTurn(Board board) {
+    /*public int takeTurn(Board board) {
         // returns the column index choice
+
 
         // CPU logic would go here
         if ("CPU".equals(getName())) return cpuTakeTurn(board.get());
@@ -63,7 +66,6 @@ public class Player {
     }
 
 
-
     public void setID(int ID) { //TODO Hency:  Discuss on whether or not the setID field is private and static
         /* the id is important because the corresponding symbol is based
          * on the player's id. EG: X for id 1 and O for id 2.
@@ -74,8 +76,8 @@ public class Player {
     }
 
     @Override
-    public String toString(){
-        return "Player Name: " +getName() + " is " + "ID#: "+getID();
+    public String toString() {
+        return "Player Name: " + getName() + " is " + "ID#: " + getID();
     }
 
 }

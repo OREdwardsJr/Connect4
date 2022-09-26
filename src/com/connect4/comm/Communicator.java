@@ -81,7 +81,8 @@ public class Communicator {
 
     public int takeTurn() {
         int columnNumber = 0;
-
+        String move = prompter.prompt("Select your move [1-7]");
+        columnNumber = Integer.parseInt(move);
         return columnNumber;
     }
 

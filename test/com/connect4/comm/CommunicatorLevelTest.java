@@ -33,7 +33,6 @@ class CommunicatorLevelTest {
                 System.out.println("Invalid input, please provide [1] for Easy, [2] for Medium or [3] for Hard.");
 
         }
-
         }
 
         System.out.println(level);
