@@ -2,12 +2,17 @@ package com.connect4;
 
 class Display {
 
-    private static char[][] values;    // declare # of rows then declare # of columns.
+    // private Display display;
+    // private Player player;
+    // int row;
+    // int column;
+
+    private static String[][] values = new String[6][7];    // declare # of rows then declare # of columns.
     public Display() {            // ctor
-        values = new char[6][7];    // declared to have 6 rows and 7 columns.
+        //String[][]  values = new String[6][7];    // declared to have 6 rows and 7 columns.
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
-                values[i][j] = ' '; // storing characters. Whitespace.
+                values[i][j] = String.valueOf(' '); // storing characters. Whitespace.
             }
         }
     }
@@ -16,7 +21,7 @@ class Display {
         for (int i = 0; i < 7; i++) {
             System.out.print("  " + (i+1) + " ");
         }
-        System.out.println();   // testing for commit.
+        System.out.println();
 
         for (int j = 0; j <7; j++) {
             System.out.print("+---");   // used to close in the top.
@@ -39,4 +44,20 @@ class Display {
         Display display = new Display();
         Display.printDisplay();
     }
+
+    public void updateDisplay(Player player, int row, int column) {
+    // this.player = player.getID();
+    // this.row = row;
+    // this.column = column;
+        String boardPiece = "X";
+
+        if(player.getID() ==1) {
+            boardPiece = "X";
+        }
+        else {
+            boardPiece = "O";
+        }
+        values[row][column] = boardPiece;
+    }
+
 }
