@@ -33,7 +33,7 @@ class CommunicatorTest {
 
 
 
-        // THIS IS TO TEST SINGLE PLAYER ENTRY
+    /*    // THIS IS TO TEST SINGLE PLAYER ENTRY
         Prompter prompter = new Prompter(new Scanner(System.in));
         List<Player> gamePlayers = new ArrayList<>();
 
@@ -59,10 +59,22 @@ class CommunicatorTest {
         // prompt for username. if it's "" then return CPU
 
 
-        System.out.println(player.getName());
+        System.out.println(player.getName());*/
 
 
+        Prompter prompter = new Prompter(new Scanner(System.in));
 
+        String playerName;
+
+        playerName = prompter.prompt("Please enter name: ");
+        if (playerName.equals("")) {
+            playerName = "CPU";
+        }
+        else if(playerName.equalsIgnoreCase("CPU")){
+            playerName="CPU";
+        }
+
+        System.out.println(playerName);
 
     }
 
