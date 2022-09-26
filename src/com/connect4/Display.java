@@ -12,11 +12,11 @@ class Display {
         }
     }
 
-    public static void printBoard() {
+    public static void printDisplay() {
         for (int i = 0; i < 7; i++) {
             System.out.print("  " + (i+1) + " ");
         }
-        System.out.println();
+        System.out.println();   // testing for commit.
 
         for (int j = 0; j <7; j++) {
             System.out.print("+---");   // used to close in the top.
@@ -36,8 +36,7 @@ class Display {
     }
 
     public static void main(String[] args) {
-        Board board = new Board();
-        Display.printBoard();
+        Display display = new Display();
+        Display.printDisplay();
     }
-
 }
