@@ -26,7 +26,7 @@ public class Communicator {
 
     public String selectDifficulty() {
 
-        String level = "2";
+        String level = "1";
 
         boolean quit = false;
         while (!quit){
@@ -52,28 +52,22 @@ public class Communicator {
     }
 
     public String newPlayerName() {
-        //TODO 09/26 Orlando: @Hency, you don't need to set the ID here as that's done in the Controller?
-        // Maybe I'm not understanding fully but we just need this method to
-        // return something like -> prompter.prompt("Please enter name (Enter CPU for computer): ")
-        // Controller takes care of everything else. Let's discuss?
-        Player player = new Player();
-        int id = 1;
+        //TODO 09/26 Hency: @Orlando, take a quick glance at this
+        // I am returning the name for Player
+        // I am also returning the name for Player if the input is "" or "CPU". This method will not be case sensitive
+        Prompter prompter = new Prompter(new Scanner(System.in));
 
-        if (gamePlayers.isEmpty()) { // Check if Object ArrayList is empty. This is to facilitate the assignment of ID's
-            player.setName(prompter.prompt("Please enter name: "));
-            player.setID(id);
-            if (player.getName().equals("")) {//This will check if the Player is Human or CPU
-                player.setName("CPU");
-                gamePlayers.add(player);
-            } else {
-                gamePlayers.add(player);
-            }
-        } else { // If the Object ArrayList is not empty, then the ID field will increase by 1, which will identify Player#2
-            id++;
-            player = new Player((prompter.prompt(("Please enter name: "))), id);
+        String playerName;
+
+        playerName = prompter.prompt("Please enter name: ");
+        if (playerName.equals("")) {
+            playerName = "CPU";
+        }
+        else if(playerName.equalsIgnoreCase("CPU")){
+            playerName="CPU";
         }
 
-        return player.getName(); // This will return the current player entry
+        return playerName; // This will return the player name
     }
 
     public boolean playNewGame() {
@@ -82,7 +76,7 @@ public class Communicator {
         return result;
     }
 
-    public int takeTurn() {//TODO: Need to figure out how to feed this to player and board
+    public int takeTurn() {
         int columnNumber = 0;
         String move = prompter.prompt("Select your move [1-7]");
         columnNumber = Integer.parseInt(move);
