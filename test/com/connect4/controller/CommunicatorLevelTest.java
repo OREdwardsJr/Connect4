@@ -1,4 +1,4 @@
-package com.connect4.comm;
+package com.connect4.controller;
 
 import com.apps.util.Prompter;
 

@@ -1,6 +1,6 @@
 package com.connect4;
 
-import com.connect4.comm.Communicator;
+import com.connect4.controller.Communicator;
 
 public class Player {
 
