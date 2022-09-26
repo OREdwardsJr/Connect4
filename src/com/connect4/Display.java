@@ -12,7 +12,7 @@ class Display {
         }
     }
 
-    public static void printBoard() {
+    public static void printDisplay() {
         for (int i = 0; i < 7; i++) {
             System.out.print("  " + (i+1) + " ");
         }
@@ -36,8 +36,7 @@ class Display {
     }
 
     public static void main(String[] args) {
-        Board board = new Board();
-        Display.printBoard();
+        Display display = new Display();
+        Display.printDisplay();
     }
-
 }
