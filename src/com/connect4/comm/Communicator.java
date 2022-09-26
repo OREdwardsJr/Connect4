@@ -79,7 +79,7 @@ public class Communicator {
         return result;
     }
 
-    public int takeTurn() {
+    public int takeTurn() {//TODO: Need to figure out how to feed this to player and board
         int columnNumber = 0;
         String move = prompter.prompt("Select your move [1-7]");
         columnNumber = Integer.parseInt(move);
