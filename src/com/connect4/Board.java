@@ -4,8 +4,6 @@ import com.connect4.boardscanner.BoardScanner;
 
 public class Board {
     // Properties
-    private static final Board BOARD = new Board();
-
     private final int columns = 7;
     private final int rows = 6;
 
@@ -15,11 +13,7 @@ public class Board {
     private int[] rowTracker = new int[] {i, i, i, i, i, i, i}; // tracks next available row for column entries
 
     // Business methods
-    public static Board newInstance() {
-        return BOARD;
-    }
-
-    public boolean validMove(int column) {
+    public boolean validMove(int column) { //TODO move this to BoardScanner
         return (column < rowTracker.length && rowTracker[column] >= 0);
     }
 

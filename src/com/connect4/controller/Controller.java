@@ -12,7 +12,7 @@ class Controller {
     private static Player player2;
 
     private static final Communicator COMM = Communicator.newInstance();
-    private static final Board BOARD = Board.newInstance();
+    private static final Board BOARD =  new Board();
 
     public static void main(String[] args) {
         while (newGame) { // Start new game
