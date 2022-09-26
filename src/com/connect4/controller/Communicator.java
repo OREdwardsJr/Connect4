@@ -24,7 +24,7 @@ public class Communicator {
         return COMM;
     }
 
-    public String selectDifficulty() {
+    public String selectDifficulty() { //commit to main
 
         String level = "1";
 
