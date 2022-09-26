@@ -21,22 +21,22 @@ public class Player {
     // business methods
     public int takeTurn(Board board) { // returns the column index choice
         // 9/26 Orlando: @Hency maybe pass the difficultly level to cpuTakeTurn?
-        if ("CPU".equals(getName())) return cpuTakeTurn(board);
+        if ("CPU".equals(getName())) return cpuTakeTurn(board, this);
 
         // Grabs column choice from user accounting for user entry being 1-indexed based
         // should probably return columnNumber - 1 within COMM.takeTurn();
         return COMM.takeTurn() - 1;
     }
 
-    private int cpuTakeTurn(Board board) {
+    private int cpuTakeTurn(Board board, Player player) {
         int choice = 0;
 
-        // TODO @Hency
-        // need conditional for choosing between different levels EG: Easy, Medium, Hard
-        /*
-        EG: if difficulty == easy then return CompLogic.easy()
-            else return CompLogic.medium()
-         */
+        if (COMM.selectDifficulty().equals("1")){
+            choice =Computer.easy(board,player);
+        }
+        else if (COMM.selectDifficulty().equals("2")){
+            choice = Computer.medium(board,player);
+        }
         return choice;
     }
 
