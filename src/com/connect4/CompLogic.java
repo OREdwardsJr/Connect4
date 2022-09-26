@@ -6,12 +6,13 @@ import java.util.List;
 
 class CompLogic {
 
-    public static int easy(int[][] board, int id) {
+    public static int easy(Board board, int id) {
         int choice = 0;
-        List<Integer> columnChoice = swapNums(board[0].length);
+        int[][] getBoard = board.get();
+        List<Integer> columnChoice = swapNums(getBoard[0].length);
 
         for (Integer i : columnChoice) {
-            if (board[0][i] >= 0) {
+            if (getBoard[0][i] >= 0) {
                 choice = i;
                 break;
             }
@@ -27,7 +28,7 @@ class CompLogic {
      *  - findBestOption calls checkRow() on each row to capture the row's highest value
      *  - checkRow() returns the largest number of connected pieces
      */
-    public static int medium(int[][] board, int id) {
+    public static int medium(Board board, int id) {
         // index 0 is the position - index 1 is the count of connected pieces
         int[] cpuBestOption = new int[2];
         int[] opponentBestOption = new int[2];
@@ -42,49 +43,50 @@ class CompLogic {
         return cpuBestOption[0]; // return option with the longest connection of cpu pieces
     }
 
-    private static int[] findBestOption(int[][] board, int id, boolean useId) {
+    private static int[] findBestOption(Board board, int id, boolean useId) {
         int currentValue = 0;
         int[] bestOption = new int[2];
         int r = 0; int c = 0; int count = 0;
 
-        for (int option = 0; option < board[0].length; option++) {
-            currentValue = checkRow(board, option, id, r, c, count, useId);
-
-            if (currentValue > bestOption[1]) {
-                bestOption[0] = option;
-                bestOption[1] = currentValue;
-                if (bestOption[1] == 4) break;
+        for (c = 0; c < board.get()[0].length; c++) {
+            r = board.columnEntries()[c];
+            for (int option = 1; option < 5; option++) {
+                currentValue = checkRow(board, option, id, r, c, count, useId);
+                if (currentValue > bestOption[1]) {
+                    bestOption[0] = option;
+                    bestOption[1] = currentValue;
+                    if (bestOption[1] == 4) break;
+                }
             }
         }
         return bestOption;
     }
 
-    private static int checkRow(int[][] board, int option, int id, int r, int c, int count, boolean useId) {
-        if ((r < 0 || r >= board.length) || (c < 0 || c >= board[0].length)) return count; // if out of bounds
+    private static int checkRow(Board board, int option, int id, int r, int c, int count, boolean useId) {
+        int[][] getBoard = board.get();
 
-        if (board[r][c] != 0) {
-            if ((useId && id != board[r][c]) || (!useId && board[r][c] == id)) {  // if board holds opponent's piece
+        if ((r < 0 || r >= getBoard.length) || (c < 0 || c >= getBoard[0].length)) return count; // if out of bounds
+
+        if (board.get()[r][c] != 0) {
+            if ((useId && id != getBoard[r][c]) || (!useId && getBoard[r][c] == id)) {  // if board holds opponent's piece
                 return count;
             }
         }
 
-        if (++count == 4 || board[r][c] == 0) return count; // if winning option is present or slot is empty
+        if (++count == 4 || getBoard[r][c] == 0) return count; // if winning option is present or slot is empty
 
         switch (option) { // there are at most 7 directions to check for winning moves
-            case 0: // travel Northeast
-                return checkRow(board, option, id, --r, ++c, count, useId);
-            case 1: // travel East
-                return checkRow(board, option, id, r, ++c, count, useId);
-            case 2: // travel Southeast
-                return checkRow(board, option, id, ++r, ++c, count, useId);
-            case 3: // travel South
+            case 1: // travel Northeast
+                return checkRow(board, option, id, --r, ++c, count, useId) +
+                        checkRow(board, option, id, ++r, --c, count, useId);
+            case 2: // travel East
+                return checkRow(board, option, id, r, ++c, count, useId) +
+                        checkRow(board, option, id, r, --c, count, useId);
+            case 3: // travel Southeast
+                return checkRow(board, option, id, ++r, ++c, count, useId) +
+                        checkRow(board, option, id, --r, --c, count, useId);
+            default: // travel South
                 return checkRow(board, option, id, ++r, c, count, useId);
-            case 4: // travel Southwest
-                return checkRow(board, option, id, ++r, --c, count, useId);
-            case 5: // travel West
-                return checkRow(board, option, id, r, --c, count, useId);
-            default: // travel Northwest
-                return checkRow(board, option, id, --r, --c, count, useId);
         }
     }
 

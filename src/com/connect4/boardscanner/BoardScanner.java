@@ -5,32 +5,44 @@ import com.connect4.Player;
 
 public class BoardScanner {
 
-    private BoardScanner(){};
+    private BoardScanner(){}
 
-    public static boolean checkRow(int option, int count, Player player, int[][] board, int r, int c) {
+    public static int checkRow(Board board, int option, int count, Player player, int r, int c) {
+        /*
+         * Checks for 3 matching pieces to player.getID() all valid directions.
+         * Our recursive calls need to have count passed as 0 due to us technically searching for the number of
+         * matching surrounding pieces.
+         *
+         * EG: [_ _ O _ O O _] We'd want to add our O piece to index 3. CheckRow registers that there are three matching
+         * slots as it will return results of a recursive search headed left of index 3 and headed right of index 3
+         * 1 + 2 will return 3, which means that if we enter into that slot we will now have 4 connecting pieces
+         * and will win the game.
+         *
+         * Note - if count no longer gets passed as -1 when checkRow is originally called then adjust logic below
+         */
         // recursive method that travels in a direction based on option while count < 4
-        if ((r < 0 || r >= board.length) ||
-            (c < 0 || c >= board[0].length) ||
-            (player.getID() != board[r][c]))
-            return false;
+        int[][] getBoard = board.get();
 
-        if (++count == 4) return true;
+        if ((r < 0 || r >= getBoard.length)    ||
+            (c < 0 || c >= getBoard[0].length) ||
+            (player.getID() != getBoard[r][c]) ||
+            (count > 0 && getBoard[r][c] == 0)) // empty spaces after first iterations are not accepted
+            return count;
 
-        switch (option) { // there are at most 7 directions to check for winning moves
-            case 0: // travel Northeast
-                return checkRow(option, count, player, board, --r, ++c);
-            case 1: // travel East
-                return checkRow(option, count, player, board, r, ++c);
-            case 2: // travel Southeast
-                return checkRow(option, count, player, board, ++r, ++c);
-            case 3: // travel South
-                return checkRow(option, count, player, board, ++r, c);
-            case 4: // travel Southwest
-                return checkRow(option, count, player, board, ++r, --c);
-            case 5: // travel West
-                return checkRow(option, count, player, board, r, --c);
-            default: // travel Northwest
-                return checkRow(option, count, player, board, --r, --c);
+        if (count >= 3) return count;
+
+        switch (option) {
+            case 0: // travel Northeast + Southwest
+                return checkRow(board, option, count + 1, player, --r, ++c) +
+                        checkRow(board, option, count + 1, player, ++r, --c);
+            case 1: // travel East + West
+                return checkRow(board, option, count + 1, player, r, ++c) +
+                        checkRow(board, option, count + 1, player, r, --c);
+            case 2: // travel Southeast + Northwest
+                return checkRow(board, option, count + 1, player, ++r, ++c) +
+                        checkRow(board, option, count + 1, player, --r, --c);
+            default: // travel South
+                return checkRow(board, option, count + 1, player,++r, c);
         }
     }
 }

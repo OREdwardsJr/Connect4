@@ -53,6 +53,10 @@ public class Communicator {
     }
 
     public String newPlayerName() {
+        //TODO 09/26 Orlando: @Hency, you don't need to set the ID here as that's done in the Controller?
+        // Maybe I'm not understanding fully but we just need this method to
+        // return something like -> prompter.prompt("Please enter name (Enter CPU for computer): ")
+        // Controller takes care of everything else. Let's discuss?
         Player player = new Player();
         int id = 1;
 
