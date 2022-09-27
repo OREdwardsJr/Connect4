@@ -1,6 +1,7 @@
 package com.connect4.controller;
 
 import com.connect4.Board;
+import com.connect4.Display;
 import com.connect4.Player;
 import com.connect4.Computer;
 
@@ -14,7 +15,7 @@ public class Controller {
     private static Player player2;
     private static boolean newGame = true;
 
-    public static void main(String[] args) {
+    public static void run() {
         while (newGame) { // Start new game
             setupGame();
 
@@ -34,6 +35,7 @@ public class Controller {
         player2 = new Player(COMMUNICATOR.newPlayerName(), 2);
 
         // Set CPU difficulty
+        //TODO Communicator currently will set CPU for both players. Adjust this
         if (CPU.equalsIgnoreCase(player2.getName())) {
             Computer.setDifficultyLevel(COMMUNICATOR.selectDifficulty());
         }
@@ -72,13 +74,18 @@ public class Controller {
                 validMove = BOARD.validMove(choice);
             }
 
+            // Update and print display
+            Display.updateDisplay(player, BOARD.columnEntries()[choice], choice);
+            Display.printDisplay();
+
+            // Occupy slot on board
             BOARD.occupySlot(player, choice);
 
             winnerDetected = BOARD.winnerDetected(player, choice);
 
             startNewRound = (!winnerDetected && turns < 42);
         }
-        player.announceVictory(winnerDetected);
+        COMMUNICATOR.announceVictory(player, winnerDetected);
     }
 }
 
