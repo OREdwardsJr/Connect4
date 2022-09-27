@@ -13,6 +13,8 @@ public class Controller {
 
     private static Player player1;
     private static Player player2;
+    private static Computer computer1;
+    private static Computer computer2;
     private static boolean newGame = true;
 
     public static void run() {
@@ -32,13 +34,19 @@ public class Controller {
         // Create players
         // Additional properties can be set in the future (EG: color or slot symbol)
         player1 = new Player(COMMUNICATOR.newPlayerName(), 1);
+        if (CPU.equalsIgnoreCase(player1.getName())) {
+            computer1.setDifficultyLevel(COMMUNICATOR.selectDifficulty());
+        }
+
         player2 = new Player(COMMUNICATOR.newPlayerName(), 2);
+        if (CPU.equalsIgnoreCase(player2.getName())) {
+            computer2.setDifficultyLevel(COMMUNICATOR.selectDifficulty());
+        }
+
 
         // Set CPU difficulty
         //TODO Communicator currently will set CPU for both players. Adjust this
-        if (CPU.equalsIgnoreCase(player2.getName())) {
-            Computer.setDifficultyLevel(COMMUNICATOR.selectDifficulty());
-        }
+
 
         // Swap names if value of equation is an odd number
         if ((int) (Math.random() * 100) % 2 != 0) {
@@ -65,8 +73,9 @@ public class Controller {
 
             // Take turn
             while (!validMove) { // probably need to throw some type of error somewhere
-                if (CPU.equals(player.getName())) {
-                    choice = Computer.takeTurn(BOARD, player);
+                if (CPU.equalsIgnoreCase(player.getName())) {
+                    if (1 == player.getID()) choice = computer1.takeTurn(BOARD, player);
+                    else choice = computer2.takeTurn(BOARD, player);
                 }
                 else {
                     choice = player.takeTurn();

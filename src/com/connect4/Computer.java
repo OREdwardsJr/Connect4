@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Computer extends Player {
-    private static String difficultyLevel;
+    private String difficultyLevel;
 
     public Computer(String difficultyLevel) {
         setDifficultyLevel(difficultyLevel);
@@ -13,13 +13,13 @@ public class Computer extends Player {
 
     // We pass a Player object in our signature to allow the computer to
     // monitor id which will be needed to check for connected rows
-    public static int takeTurn(Board board, Player player) {
+    public int takeTurn(Board board, Player player) {
         if ("easy".equalsIgnoreCase(difficultyLevel)) return easy(board);
 
         return medium(board, player);
     }
 
-    public static int easy(Board board) {
+    public int easy(Board board) {
         int choice = 0;
         int[][] getBoard = board.get();
         List<Integer> columnChoice = swapNums(getBoard[0].length);
@@ -41,7 +41,7 @@ public class Computer extends Player {
      *  - findBestOption calls checkRow() on each row to capture the row's highest value
      *  - checkRow() returns the largest number of connected pieces
      */
-    public static int medium(Board board, Player player) {
+    public int medium(Board board, Player player) {
         // index 0 is the position - index 1 is the count of connected pieces
         int[] cpuBestOption = new int[2];
         int[] opponentBestOption = new int[2];
@@ -56,7 +56,7 @@ public class Computer extends Player {
         return cpuBestOption[0]; // return option with the longest connection of cpu pieces
     }
 
-    private static int[] findBestOption(Board board, Player player, boolean useId) {
+    private int[] findBestOption(Board board, Player player, boolean useId) {
         int currentValue = 0;
         int[] bestOption = new int[2];
         int r = 0; int c = 0; int count = 0;
@@ -75,7 +75,7 @@ public class Computer extends Player {
         return bestOption;
     }
 
-    private static int checkRow(Board board, int option, Player player, int r, int c, int count, boolean useId) {
+    private int checkRow(Board board, int option, Player player, int r, int c, int count, boolean useId) {
         int[][] getBoard = board.get();
 
         if ((r < 0 || r >= getBoard.length) || (c < 0 || c >= getBoard[0].length)) return count; // if out of bounds
@@ -103,7 +103,7 @@ public class Computer extends Player {
         }
     }
 
-    private static List<Integer> swapNums(int listSize) {
+    private List<Integer> swapNums(int listSize) {
         List<Integer> list = new ArrayList<>(listSize);
 
         for (int i = 0; i < listSize; i++) list.set(i, i);
@@ -115,11 +115,11 @@ public class Computer extends Player {
 
     // getters and setters
 
-    public static void setDifficultyLevel(String difficultyLevel) {
-        difficultyLevel = difficultyLevel;
+    public void setDifficultyLevel(String difficultyLevel) {
+        this.difficultyLevel = difficultyLevel.toUpperCase();
     }
 
     public String getDifficultyLevel() {
-        return difficultyLevel;
+        return this.difficultyLevel;
     }
 }
