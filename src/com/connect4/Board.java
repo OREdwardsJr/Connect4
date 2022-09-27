@@ -1,5 +1,7 @@
 package com.connect4;
 
+import java.util.Arrays;
+
 public class Board {
     // Properties
     private final int columns = 7;
@@ -24,11 +26,18 @@ public class Board {
     public boolean winnerDetected(Player player, int column) {
         // tracks the longest chain where slots are previously filled by player's id next to empty slot
         int longestChain = 0;
+        int currChain = 0;
+        int count = 0;
 
-        for (int i = 0; i < 4; i++) {
-            if (longestChain < 3) longestChain = BoardScanner.checkRow(this, i, 0, player, rowTracker[column], column);
+        this.get()[rowTracker[column]][column] = player.getID();
+
+        for (int i = 0; i < 7; i+=2) {
+            currChain = BoardScanner.checkRow(this, i, count, player, rowTracker[column], column) +
+                    BoardScanner.checkRow(this, i+1, count, player, rowTracker[column], column);
+            if (longestChain < 3) longestChain = Math.max(currChain, longestChain);
             else break;
         }
+        this.get()[rowTracker[column]][column] = 0;
         return (longestChain >= 3);
     }
 
@@ -38,7 +47,6 @@ public class Board {
     }
 
     public int[][] get() {
-        // most likely to be used for displaying the board
         return board;
     }
 
@@ -46,9 +54,7 @@ public class Board {
         return this.rowTracker;
     }
 
-    private static class BoardScanner {
-
-        private BoardScanner(){}
+    public static class BoardScanner {
 
         public static int checkRow(Board board, int option, int count, Player player, int r, int c) {
             /*
@@ -66,27 +72,44 @@ public class Board {
             // recursive method that travels in a direction based on option while count < 4
             int[][] getBoard = board.get();
 
+            switch (option) {
+                case 0: // travel Northeast
+                    r -= 1;
+                    c += 1;
+                    break;
+                case 1: // travel Southwest
+                    r += 1;
+                    c -= 1;
+                    break;
+                case 2: // travel East
+                    c += 1;
+                    break;
+                case 3: // travel West
+                    c -= 1;
+                    break;
+                case 4: // travel Southeast
+                    r += 1;
+                    c += 1;
+                    break;
+                case 5: // travel Northwest
+                    r -= 1;
+                    c -= 1;
+                    break;
+                case 6: // travel South
+                    r += 1;
+                    break;
+                default:
+                    return 0;
+            }
+
             if ((r < 0 || r >= getBoard.length)    ||
                 (c < 0 || c >= getBoard[0].length) ||
-                (player.getID() != getBoard[r][c]) ||
-                (count > 0 && getBoard[r][c] == 0)) // empty spaces after first iterations are not accepted
+                (player.getID() != getBoard[r][c])) // empty spaces after first iterations are not accepted
                 return count;
 
             if (count >= 3) return count;
 
-            switch (option) {
-                case 0: // travel Northeast + Southwest
-                    return checkRow(board, option, count + 1, player, --r, ++c) +
-                            checkRow(board, option, count + 1, player, ++r, --c);
-                case 1: // travel East + West
-                    return checkRow(board, option, count + 1, player, r, ++c) +
-                            checkRow(board, option, count + 1, player, r, --c);
-                case 2: // travel Southeast + Northwest
-                    return checkRow(board, option, count + 1, player, ++r, ++c) +
-                            checkRow(board, option, count + 1, player, --r, --c);
-                default: // travel South
-                    return checkRow(board, option, count + 1, player,++r, c);
-            }
+            return checkRow(board, option, count + 1, player, r, c);
         }
     }
 }
