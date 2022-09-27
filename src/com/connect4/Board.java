@@ -13,7 +13,7 @@ public class Board {
 
     // Business methods
     public boolean validMove(int column) {
-        return (0 < column && column < rowTracker.length && rowTracker[column] >= 0);
+        return (0 <= column && column < rowTracker.length && rowTracker[column] >= 0);
     }
 
     public void occupySlot(Player player, int columnChoice) {
@@ -36,8 +36,8 @@ public class Board {
          * whereas checkRow's signature would be equal other than option being passed as option + 1 for direction two.
          */
         for (int option = 0; option < 7; option+=2) {
-            currChain = BoardScanner.checkRow(this, option, count, player, rowTracker[column] + 1, column) +
-                    BoardScanner.checkRow(this, option + 1, count, player, rowTracker[column] + 1, column);
+            currChain = checkRow(this, option, count, player, rowTracker[column] + 1, column) +
+                    checkRow(this, option + 1, count, player, rowTracker[column] + 1, column);
             if (longestChain < 3) longestChain = Math.max(currChain, longestChain);
             else break;
         }

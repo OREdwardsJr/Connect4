@@ -1,9 +1,6 @@
 package com.connect4;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 import java.util.Arrays;
 
@@ -46,6 +43,7 @@ public class BoardTest {
         board = new Board();
 
         for (int i = 0; i < board.get()[0].length; i++) {
+            System.out.println(i);
             assertTrue(board.validMove(i));
         }
     }
