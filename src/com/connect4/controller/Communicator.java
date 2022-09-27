@@ -92,16 +92,30 @@ public class Communicator {
                     quitLoopNewGame = true;
                     break;
                 default:
-                    System.out.println("Invalid input, please provide [Y] for Yes or [N] for No.");
+                    System.out.println("Invalid entry, please provide [Y] for Yes or [N] for No.");
             }
         }
         return result;
     }
 
     public int takeTurn() {
-        int columnNumber;
-        String move = prompter.prompt("Select your move [1-7]");
-        columnNumber = Integer.parseInt(move);
+        int columnNumber = 0;
+        boolean quitLoopTakeTurn = false;
+        String move;
+
+        while(!quitLoopTakeTurn){
+            move = prompter.prompt("Select your move [1-7]");
+
+            switch (move){
+                case("1"):case("2"):case("3"):case("4"):case("5"):case("6"):case("7"):
+                    columnNumber = Integer.parseInt(move);
+                    quitLoopTakeTurn = true;
+                    break;
+                default:
+                    System.out.println("Invalid move, please select a number [1-7]");
+            }
+        }
+
         return columnNumber;
     }
 
