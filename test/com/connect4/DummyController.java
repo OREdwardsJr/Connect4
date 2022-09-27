@@ -2,6 +2,8 @@ package com.connect4;
 
 import com.connect4.controller.Communicator;
 
+// bogus comment :)
+
 class DummyController {
     private static final String CPU = "CPU";
 
