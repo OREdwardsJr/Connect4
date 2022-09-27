@@ -15,7 +15,7 @@ public class Board {
 
     // Business methods
     public boolean validMove(int column) {
-        return (column < rowTracker.length && rowTracker[column] >= 0);
+        return (0 < column && column < rowTracker.length && rowTracker[column] >= 0);
     }
 
     public void occupySlot(Player player, int columnChoice) {

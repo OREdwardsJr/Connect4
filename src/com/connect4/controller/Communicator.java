@@ -31,6 +31,7 @@ public class Communicator {
         boolean quit = false;
         while (!quit){
             String selectLevel = prompter.prompt("Select number for difficulty level:\n1-Easy\n2-Medium\n");
+
             switch (selectLevel) {
                 case ("1"):
                     level = "Easy";

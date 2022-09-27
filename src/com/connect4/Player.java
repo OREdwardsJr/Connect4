@@ -31,10 +31,10 @@ public class Player {
     private int cpuTakeTurn(Board board, Player player) {
         int choice = 0;
 
-        if (COMM.selectDifficulty().equals("1")){
-            choice =Computer.easy(board,player);
+        if (COMM.selectDifficulty().equals("Easy")){
+            choice = Computer.easy(board,player);
         }
-        else if (COMM.selectDifficulty().equals("2")){
+        else {
             choice = Computer.medium(board,player);
         }
         return choice;
