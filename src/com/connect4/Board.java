@@ -3,6 +3,7 @@ package com.connect4;
 import java.util.Arrays;
 
 public class Board {
+    //TODO - Board and BoardScanner can be merged probably. Bring scanner into board
     // Properties
     private final int columns = 7;
     private final int rows = 6;
@@ -13,7 +14,7 @@ public class Board {
     private int[] rowTracker = new int[] {i, i, i, i, i, i, i}; // tracks next available row for column entries
 
     // Business methods
-    public boolean validMove(int column) { //TODO move this to BoardScanner
+    public boolean validMove(int column) {
         return (column < rowTracker.length && rowTracker[column] >= 0);
     }
 

@@ -62,9 +62,6 @@ public class BoardTest {
     // occupySlot()
     @Test
     public void columnEntries_shouldPrintToConsole_matchingCallsTo_BoardOccupySlot() {
-        Board board = new Board();
-        Player p1 = new Player("Orlando", 1);
-
         System.out.println(Arrays.toString(board.columnEntries()));
 
         for (int i = board.columnEntries()[0]; i > 0; i--) {
@@ -306,7 +303,6 @@ public class BoardTest {
         board.clear();
 
         // Diagonal
-
         board.occupySlot(p1, 0);
 
         board.occupySlot(p2, 1);
