@@ -29,13 +29,16 @@ public class Board {
         int currChain = 0;
         int count = 0;
 
-        // this line helps checkRow perform its function
-        //this.get()[rowTracker[column]][column] = player.getID();
-
-        for (int i = 0; i < 7; i+=2) {
-            currChain = BoardScanner.checkRow(this, i, count, player, rowTracker[column] + 1, column) +
-                    BoardScanner.checkRow(this, i+1, count, player, rowTracker[column] + 1, column);
-            if (longestChain < 4) longestChain = Math.max(currChain, longestChain);
+        /*
+         * currChain holds the total number of contiguous pieces matching player.id
+         * in two directions that would form a straight line in each valid winning directions.
+         * The equation is: BoardScanner.checkRow("direction 1") + BoardScanner.checkRow("direction 2")
+         * whereas checkRow's signature would be equal other than option being passed as option + 1 for direction two.
+         */
+        for (int option = 0; option < 7; option+=2) {
+            currChain = BoardScanner.checkRow(this, option, count, player, rowTracker[column] + 1, column) +
+                    BoardScanner.checkRow(this, option + 1, count, player, rowTracker[column] + 1, column);
+            if (longestChain < 3) longestChain = Math.max(currChain, longestChain);
             else break;
         }
         return (longestChain >= 3);
@@ -59,31 +62,33 @@ public class Board {
         public static int checkRow(Board board, int option, int count, Player player, int r, int c) {
             int[][] getBoard = board.get();
 
+            switch (option) {
+                case 0:
+                    r -= 1; c += 1; break;  // travel Northeast
+                case 1:
+                    r += 1; c -= 1; break;  // travel Southwest
+                case 2:
+                            c += 1; break;  // travel East
+                case 3:
+                            c -= 1; break;  // travel West
+                case 4:
+                    r += 1; c += 1; break;  // travel Southeast
+                case 5:
+                    r -= 1; c -= 1; break;  // travel Northwest
+                case 6:
+                    r += 1;         break;  // travel South
+                default:
+                    return count;           // North cannot be traveled. count == 0
+            }
+
             if ((r < 0 || r >= getBoard.length)     ||
                 (c < 0 || c >= getBoard[0].length)  ||
                 (player.getID() != getBoard[r][c]))
                 return count;
 
-            if (count > 3) return count;
+            if (count == 3) return count;
 
-            switch (option) { // adds every 2 cases to check all valid sides of token entry in board
-                case 0: // travel Northeast
-                    return checkRow(board, option, count + 1, player, --r, ++c);
-                case 1: // travel Southwest
-                    return checkRow(board, option, count + 1, player, ++r, --c);
-                case 2: // travel East
-                    return checkRow(board, option, count + 1, player, r, ++c);
-                case 3: // travel West
-                    return checkRow(board, option, count + 1, player, r, --c);
-                case 4: // travel Southeast
-                    return checkRow(board, option, count + 1, player, ++r, ++c);
-                case 5: // travel Northwest
-                    return checkRow(board, option, count + 1, player, --r, --c);
-                case 6: // travel South
-                    return checkRow(board, option, count + 1, player, ++r, c);
-                default: // traveling North is impossible so return 0
-                    return 0;
-            }
+            return checkRow(board, option, count + 1, player, r, c);
         }
     }
 }
