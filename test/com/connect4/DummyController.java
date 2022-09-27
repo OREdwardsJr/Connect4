@@ -1,6 +1,7 @@
 package com.connect4;
 
 import com.connect4.controller.Communicator;
+import com.connect4.controller.Display;
 
 // bogus comment :)
 
@@ -71,6 +72,8 @@ class DummyController {
                     choice = player.takeTurn();
                 }
                 validMove = BOARD.validMove(choice);
+                System.out.println(validMove);
+                System.out.println(choice);
             }
 
             // Update and print display

@@ -1,4 +1,6 @@
-package com.connect4;
+package com.connect4.controller;
+
+import com.connect4.Player;
 
 public class Display {
 

@@ -6,13 +6,15 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class CompLogicTest {
-    private static Computer CPU_EASY = new Computer("easy");
-    private static Computer CPU_MEDIUM = new Computer("medium");
+    private static Computer CPU_EASY;
+    private static Computer CPU_MEDIUM;
 
     private final Board BOARD = new Board();
 
     @BeforeClass
     public static void beforeClass() throws Exception {
+        CPU_EASY = new Computer("easy");
+        CPU_MEDIUM = new Computer("medium");
         DummyController.setupGame();
         CPU_EASY = DummyController.computer1;
         CPU_MEDIUM = DummyController.computer2;

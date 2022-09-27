@@ -106,7 +106,7 @@ public class Communicator {
 
     public void announceVictory(Player player, boolean winnerDetected) {
         if (winnerDetected) {
-            System.out.println(player.getName() + " wins!");
+            System.out.println("Player " + player.getID() + " wins!");
         } else {
             System.out.println("Tie game!");
         }

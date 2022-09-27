@@ -1,5 +1,7 @@
 package com.connect4;
 
+import java.util.Arrays;
+
 public class Board {
     // Properties
     private final int columns = 7;
@@ -13,6 +15,7 @@ public class Board {
 
     // Business methods
     public boolean validMove(int column) {
+        System.out.println(Arrays.toString(this.columnEntries()));
         return (0 <= column && column < rowTracker.length && rowTracker[column] >= 0);
     }
 
