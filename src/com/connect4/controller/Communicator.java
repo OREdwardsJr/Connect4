@@ -36,59 +36,65 @@ public class Communicator {
                     break;
 
                 default:
-                    System.out.println("Invalid input, please provide [1] for Easy, [2] for Medium");
+                    System.out.println("Invalid input, please provide [1] for Easy, [2] for Medium.");
             }
         }
         return level;
     }
 
     public String newPlayerName() {
-        //TODO 09/26 Hency: @Orlando, take a quick glance at this
-        // I am returning the name for Player
-        // I am also returning the name for Player if the input is "" or "CPU". This method will not be case sensitive
-
-        //TODO 09/27 Orlando: @Hency, let's go with the below and delete the commented out part. I'd like to
-        // keep "CPU" free for user choice as an actual player name. Empty string "" is sufficient for setting 1-player IMO
         Prompter prompter = new Prompter(new Scanner(System.in));
+        boolean quitNewPlayerName = false;
+        String playerName = "";
 
-        String playerName;
+        while (!quitNewPlayerName) {
+            playerName = prompter.prompt("Please enter name (press return for CPU): ");
 
-        playerName = prompter.prompt("Please enter name: ");
-        if (playerName.equals("")) {
-            playerName = "CPU";
+            switch (playerName.toLowerCase()) {
+                case (""):
+                    playerName = "CPU";
+                    quitNewPlayerName = true;
+                    break;
+                case ("cpu"):
+                    System.out.println("Invalid entry, for CPU player please press return.");
+                    break;
+                case ("computer"):
+                    System.out.println("Invalid entry, for Computer/CPU player please press return.");
+                    break;
+                case("c p u"):case("cp u"):case("c pu"):
+                    System.out.println("Invalid entry... but funny, I will allow it. However this is NOT a Computer/CPU player. You are now player: The-Comedian");
+                    playerName=("The-Comedian");
+                    quitNewPlayerName = true;
+                    break;
+                default:
+                    quitNewPlayerName =true;
+                    break;
+            }
         }
-        /*
-        else if(playerName.equalsIgnoreCase("CPU")){
-            playerName="CPU";
-        }
-         */
-
-        return playerName; // This will return the player name
+            return playerName; // This will return the player name
     }
+
 
     public boolean playNewGame() {
         boolean result = false;
-        boolean quit = false;
+        boolean quitLoopNewGame = false;
         String newGameQuery;
 
-        while(!quit){
+        while(!quitLoopNewGame){
             newGameQuery = prompter.prompt("Would you like to play a new game? [Y-N]");
 
             switch (newGameQuery.toLowerCase()){
                 case ("y"):
                     result = true;
-                    quit=true;
+                    quitLoopNewGame=true;
                     break;
                 case ("n"):
-                    result = false;
-                    quit = true;
+                    quitLoopNewGame = true;
                     break;
                 default:
                     System.out.println("Invalid input, please provide [Y] for Yes or [N] for No.");
-
             }
         }
-
         return result;
     }
 
