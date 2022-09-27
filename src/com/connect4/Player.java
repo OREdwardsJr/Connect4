@@ -45,10 +45,6 @@ public class Player {
 //    }
 
 
-    public void announceVictory(boolean winnerDetected) {
-        COMM.announceVictory(this, winnerDetected);
-    }
-
     // Getter and Setter
     public void setName(String name) {
         this.name = name;
