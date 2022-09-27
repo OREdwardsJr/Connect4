@@ -33,7 +33,7 @@ class Controller {
         player2 = new Player(COMM.newPlayerName(), 2);
 
 
-        // Randomly assign who's player1 vs player2 via swap
+        // Swap names if value of equation is an odd number
         if ((int) (Math.random() * 100) % 2 != 0) {
             // Swap names
             String temp = player1.getName();
