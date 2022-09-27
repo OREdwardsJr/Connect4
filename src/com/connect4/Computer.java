@@ -43,8 +43,8 @@ public class Computer extends Player {
      */
     public int medium(Board board, Player player) {
         // index 0 is the position - index 1 is the count of connected pieces
-        int[] cpuBestOption = new int[2];
-        int[] opponentBestOption = new int[2];
+        int[] cpuBestOption;
+        int[] opponentBestOption;
 
         cpuBestOption = findBestOption(board, player, true);
         opponentBestOption = findBestOption(board, player, false);
@@ -63,8 +63,9 @@ public class Computer extends Player {
 
         for (c = 0; c < board.get()[0].length; c++) {
             r = board.columnEntries()[c];
-            for (int option = 1; option < 5; option++) {
-                currentValue = checkRow(board, option, player, r, c, count, useId);
+            for (int option = 1; option < 7; option++) {
+                currentValue = checkRow(board, option, count, player, r, c, useId) +
+                        checkRow(board, option + 1, count, player, r, c, useId);
                 if (currentValue > bestOption[1]) {
                     bestOption[0] = option;
                     bestOption[1] = currentValue;
@@ -72,36 +73,84 @@ public class Computer extends Player {
                 }
             }
         }
+        bestOption[0] = (bestOption[1] >= 1) ? bestOption[0] : easy(board);
+
         return bestOption;
     }
 
-    private int checkRow(Board board, int option, Player player, int r, int c, int count, boolean useId) {
+    private int checkRow(Board board, int option, int count, Player player, int r, int c, boolean useId) {
         int[][] getBoard = board.get();
 
-        if ((r < 0 || r >= getBoard.length) || (c < 0 || c >= getBoard[0].length)) return count; // if out of bounds
+        /* still locks if the computer chooses a column that's full*/
+        if (board.columnEntries()[count] < 0) return 0;
 
-        if (board.get()[r][c] != 0) {
-            if ((useId && player.getID() != getBoard[r][c]) || (!useId && getBoard[r][c] == player.getID())) {  // if board holds opponent's piece
-                return count;
-            }
-        }
-
-        if (++count == 4 || getBoard[r][c] == 0) return count; // if winning option is present or slot is empty
-
-        switch (option) { // there are at most 7 directions to check for winning moves
-            case 1: // travel Northeast
-                return checkRow(board, option, player, --r, ++c, count, useId) +
-                        checkRow(board, option, player, ++r, --c, count, useId);
+        switch (option) {
+            case 0: // travel Northeast
+                r -= 1;
+                c += 1;
+                break;
+            case 1: // travel Southwest
+                r += 1;
+                c -= 1;
+                break;
             case 2: // travel East
-                return checkRow(board, option, player, r, ++c, count, useId) +
-                        checkRow(board, option, player, r, --c, count, useId);
-            case 3: // travel Southeast
-                return checkRow(board, option, player, ++r, ++c, count, useId) +
-                        checkRow(board, option, player, --r, --c, count, useId);
-            default: // travel South
-                return checkRow(board, option, player, ++r, c, count, useId);
+                c += 1;
+                break;
+            case 3: // travel West
+                c -= 1;
+                break;
+            case 4: // travel Southeast
+                r += 1;
+                c += 1;
+                break;
+            case 5: // travel Northwest
+                r -= 1;
+                c -= 1;
+                break;
+            case 6: // travel South
+                r += 1;
+                break;
+            default:
+                return 0;
         }
+
+        if ((r < 0 || r >= getBoard.length)                 ||
+            (c < 0 || c >= getBoard[0].length)              ||
+            (useId && player.getID() != getBoard[r][c])     ||
+            (!useId && getBoard[r][c] == player.getID())    ||
+            (count >= 3))
+            return count;
+
+        return checkRow(board, option, count + 1, player, r, c, useId);
     }
+
+//    private int checkRow(Board board, int option, Player player, int r, int c, int count, boolean useId) {
+//        int[][] getBoard = board.get();
+//
+//        if ((r < 0 || r >= getBoard.length) || (c < 0 || c >= getBoard[0].length)) return count; // if out of bounds
+//
+//        if (board.get()[r][c] != 0) {
+//            if ((useId && player.getID() != getBoard[r][c]) || (!useId && getBoard[r][c] == player.getID())) {  // if board holds opponent's piece
+//                return count;
+//            }
+//        }
+//
+//        if (++count == 4 || getBoard[r][c] == 0) return count; // if winning option is present or slot is empty
+//
+//        switch (option) { // there are at most 7 directions to check for winning moves
+//            case 1: // travel Northeast
+//                return checkRow(board, option, player, --r, ++c, count, useId) +
+//                        checkRow(board, option, player, ++r, --c, count, useId);
+//            case 2: // travel East
+//                return checkRow(board, option, player, r, ++c, count, useId) +
+//                        checkRow(board, option, player, r, --c, count, useId);
+//            case 3: // travel Southeast
+//                return checkRow(board, option, player, ++r, ++c, count, useId) +
+//                        checkRow(board, option, player, --r, --c, count, useId);
+//            default: // travel South
+//                return checkRow(board, option, player, ++r, c, count, useId);
+//        }
+//    }
 
     private List<Integer> swapNums(int listSize) {
         List<Integer> list = new ArrayList<>(listSize);

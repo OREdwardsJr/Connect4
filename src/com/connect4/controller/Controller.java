@@ -15,6 +15,7 @@ public class Controller {
     private static Player player2;
     private static Computer computer1;
     private static Computer computer2;
+    private static Display display;
 
     private static boolean newGame = true;
 
@@ -31,7 +32,6 @@ public class Controller {
 
     private static void setupGame() {
         BOARD.clear();
-        System.out.println("hey");
 
         // Create players
         // Additional properties can be set in the future (EG: color or slot symbol)
@@ -81,8 +81,8 @@ public class Controller {
             }
 
             // Update and print display
-            Display.updateDisplay(player, BOARD.columnEntries()[choice], choice);
-            Display.printDisplay();
+            display.update(player, BOARD.columnEntries()[choice], choice);
+            display.print();
 
             // Occupy slot on board
             BOARD.occupySlot(player, choice);
@@ -94,7 +94,3 @@ public class Controller {
         COMMUNICATOR.announceVictory(player, winnerDetected);
     }
 }
-
-/*
- * If time permits then implement a scoreboard
- */

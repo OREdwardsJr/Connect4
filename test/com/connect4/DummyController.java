@@ -12,6 +12,7 @@ class DummyController {
     public static Player player2;
     public static Computer computer1;
     public static Computer computer2;
+    public static Display display = new Display();
 
     private static boolean newGame = true;
 
@@ -71,8 +72,8 @@ class DummyController {
             }
 
             // Update and print display
-            DummyDisplay.updateDisplay(player, BOARD.columnEntries()[choice], choice);
-            DummyDisplay.printDisplay();
+            display.update(player, BOARD.columnEntries()[choice], choice);
+            display.print();
 
             // Occupy slot on board
             BOARD.occupySlot(player, choice);
