@@ -2,10 +2,9 @@ package com.connect4;
 
 class Display {
 
-    // private Display display;
-    // private Player player;
-    // int row;
-    // int column;
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RED   = "\u001B[31m";
 
     private static String[][] values = new String[6][7];    // declare # of rows then declare # of columns.
     public Display() {            // ctor
@@ -30,7 +29,9 @@ class Display {
 
         for (int i = 0; i < 6; i++) {       // making 6 rows from 1-6
             for (int j = 0; j <7; j++) {    // making 7 columns per row.
-                System.out.print("| " + values[i][j] + " ");  // row & column
+                System.out.print("| " );
+                         colorText(values[i][j]);
+                System.out.print(" ");  // row & column
             }
             System.out.println("|");    // for ending line print of sticks
             for (int j = 0; j <7; j++) {
@@ -40,15 +41,29 @@ class Display {
         }
     }
 
+    private static void colorText(String value) {
+        if(value.equals("X")) {
+            System.out.print(ANSI_GREEN
+                    + value
+                    + ANSI_RESET);
+        }
+        else if(value.equals("O")) {
+            System.out.print(ANSI_RED
+                    + value
+                    + ANSI_RESET);
+        }
+        else {
+            System.out.print(value);
+        }
+    }
+
     public static void main(String[] args) {
         Display display = new Display();
         Display.printDisplay();
     }
 
     public void updateDisplay(Player player, int row, int column) {
-    // this.player = player.getID();
-    // this.row = row;
-    // this.column = column;
+
         String boardPiece = "X";
 
         if(player.getID() ==1) {
