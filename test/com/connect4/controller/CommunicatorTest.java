@@ -64,14 +64,32 @@ class CommunicatorTest {
 
         Prompter prompter = new Prompter(new Scanner(System.in));
 
-        String playerName;
+        boolean quitNewPlayerName = false;
+        String playerName = "";
 
-        playerName = prompter.prompt("Please enter name: ");
-        if (playerName.equals("")) {
-            playerName = "CPU";
-        }
-        else if(playerName.equalsIgnoreCase("CPU")){
-            playerName="CPU";
+        while (!quitNewPlayerName) {
+            playerName = prompter.prompt("Please enter name ( or press return for CPU): ");
+            switch (playerName.toLowerCase()) {
+                case (""):
+                    playerName = "CPU";
+                    quitNewPlayerName = true;
+                    break;
+                case ("cpu"):
+                    System.out.println("Invalid entry, for CPU player please press return.");
+                    break;
+                case ("computer"):
+                    System.out.println("Invalid entry, for Computer/CPU player please press return.");
+                    break;
+                case("c p u"):case("cp u"):case("c pu"):
+                    System.out.println("Invalid entry... but funny, I will allow it. However this is NOT a Computer/CPU player. You are now player: The-Comedian");
+                    playerName=("The-Comedian");
+                    quitNewPlayerName = true;
+                    break;
+
+                default:
+                    quitNewPlayerName =true;
+                    break;
+            }
         }
 
         System.out.println(playerName);
