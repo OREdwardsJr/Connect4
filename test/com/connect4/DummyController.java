@@ -2,7 +2,7 @@ package com.connect4;
 
 import com.connect4.controller.Communicator;
 
-class ControllerClassForTesting {
+class DummyController {
     private static final String CPU = "CPU";
 
     private static final Board BOARD = new Board();
@@ -71,8 +71,8 @@ class ControllerClassForTesting {
             }
 
             // Update and print display
-            Display.updateDisplay(player, BOARD.columnEntries()[choice], choice);
-            Display.printDisplay();
+            DummyDisplay.updateDisplay(player, BOARD.columnEntries()[choice], choice);
+            DummyDisplay.printDisplay();
 
             // Occupy slot on board
             BOARD.occupySlot(player, choice);

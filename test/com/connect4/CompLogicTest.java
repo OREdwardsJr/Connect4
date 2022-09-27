@@ -1,6 +1,5 @@
 package com.connect4;
 
-import com.connect4.controller.Controller;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -14,9 +13,9 @@ public class CompLogicTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        ControllerClassForTesting.setupGame();
-        CPU_EASY = ControllerClassForTesting.computer1;
-        CPU_MEDIUM = ControllerClassForTesting.computer2;
+        DummyController.setupGame();
+        CPU_EASY = DummyController.computer1;
+        CPU_MEDIUM = DummyController.computer2;
     }
 
     @Test
@@ -27,6 +26,6 @@ public class CompLogicTest {
 
     @Test
     public void name() {
-        ControllerClassForTesting.playGame();
+        DummyController.playGame();
     }
 }
