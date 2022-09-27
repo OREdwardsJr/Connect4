@@ -22,7 +22,7 @@ public class Communicator {
         String level = "1";
 
         boolean quit = false;
-        while (!quit){
+        while (!quit) {
             String selectLevel = prompter.prompt("Select number for difficulty level:\n1-Easy\n2-Medium\n");
 
             switch (selectLevel) {
@@ -66,19 +66,29 @@ public class Communicator {
         return playerName; // This will return the player name
     }
 
-    public boolean playNewGame(boolean winnerDetected) {
+    public boolean playNewGame() {
         boolean result = false;
+        boolean quit = false;
         String newGameQuery;
 
-        if (winnerDetected){
+        while(!quit){
             newGameQuery = prompter.prompt("Would you like to play a new game? [Y-N]");
-            if (newGameQuery.equalsIgnoreCase("Y") || newGameQuery.equalsIgnoreCase("N")){
-                result=true;
-            }
-            else{
-                result=false;
+
+            switch (newGameQuery.toLowerCase()){
+                case ("y"):
+                    result = true;
+                    quit=true;
+                    break;
+                case ("n"):
+                    result = false;
+                    quit = true;
+                    break;
+                default:
+                    System.out.println("Invalid input, please provide [Y] for Yes or [N] for No.");
+
             }
         }
+
         return result;
     }
 
@@ -97,8 +107,7 @@ public class Communicator {
     public void announceVictory(Player player, boolean winnerDetected) {
         if (winnerDetected) {
             System.out.println(player.getName() + " wins!");
-        }
-        else {
+        } else {
             System.out.println("Tie game!");
         }
     }
