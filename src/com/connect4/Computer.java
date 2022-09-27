@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Computer extends Player {
-    private static String difficultyLevel;
+    private String difficultyLevel;
 
     public Computer(String difficultyLevel) {
         setDifficultyLevel(difficultyLevel);
@@ -13,13 +13,13 @@ public class Computer extends Player {
 
     // We pass a Player object in our signature to allow the computer to
     // monitor id which will be needed to check for connected rows
-    public static int takeTurn(Board board, Player player) {
+    public int takeTurn(Board board, Player player) {
         if ("easy".equalsIgnoreCase(difficultyLevel)) return easy(board);
 
         return medium(board, player);
     }
 
-    public static int easy(Board board) {
+    public int easy(Board board) {
         int choice = 0;
         int[][] getBoard = board.get();
         List<Integer> columnChoice = swapNums(getBoard[0].length);
@@ -41,10 +41,10 @@ public class Computer extends Player {
      *  - findBestOption calls checkRow() on each row to capture the row's highest value
      *  - checkRow() returns the largest number of connected pieces
      */
-    public static int medium(Board board, Player player) {
+    public int medium(Board board, Player player) {
         // index 0 is the position - index 1 is the count of connected pieces
-        int[] cpuBestOption = new int[2];
-        int[] opponentBestOption = new int[2];
+        int[] cpuBestOption;
+        int[] opponentBestOption;
 
         cpuBestOption = findBestOption(board, player, true);
         opponentBestOption = findBestOption(board, player, false);
@@ -56,15 +56,16 @@ public class Computer extends Player {
         return cpuBestOption[0]; // return option with the longest connection of cpu pieces
     }
 
-    private static int[] findBestOption(Board board, Player player, boolean useId) {
+    private int[] findBestOption(Board board, Player player, boolean useId) {
         int currentValue = 0;
         int[] bestOption = new int[2];
         int r = 0; int c = 0; int count = 0;
 
         for (c = 0; c < board.get()[0].length; c++) {
             r = board.columnEntries()[c];
-            for (int option = 1; option < 5; option++) {
-                currentValue = checkRow(board, option, player, r, c, count, useId);
+            for (int option = 1; option < 7; option++) {
+                currentValue = checkRow(board, option, count, player, r, c, useId) +
+                        checkRow(board, option + 1, count, player, r, c, useId);
                 if (currentValue > bestOption[1]) {
                     bestOption[0] = option;
                     bestOption[1] = currentValue;
@@ -72,41 +73,89 @@ public class Computer extends Player {
                 }
             }
         }
+        bestOption[0] = (bestOption[1] >= 1) ? bestOption[0] : easy(board);
+
         return bestOption;
     }
 
-    private static int checkRow(Board board, int option, Player player, int r, int c, int count, boolean useId) {
+    private int checkRow(Board board, int option, int count, Player player, int r, int c, boolean useId) {
         int[][] getBoard = board.get();
 
-        if ((r < 0 || r >= getBoard.length) || (c < 0 || c >= getBoard[0].length)) return count; // if out of bounds
+        /* still locks if the computer chooses a column that's full*/
+        if (board.columnEntries()[count] < 0) return 0;
 
-        if (board.get()[r][c] != 0) {
-            if ((useId && player.getID() != getBoard[r][c]) || (!useId && getBoard[r][c] == player.getID())) {  // if board holds opponent's piece
-                return count;
-            }
-        }
-
-        if (++count == 4 || getBoard[r][c] == 0) return count; // if winning option is present or slot is empty
-
-        switch (option) { // there are at most 7 directions to check for winning moves
-            case 1: // travel Northeast
-                return checkRow(board, option, player, --r, ++c, count, useId) +
-                        checkRow(board, option, player, ++r, --c, count, useId);
+        switch (option) {
+            case 0: // travel Northeast
+                r -= 1;
+                c += 1;
+                break;
+            case 1: // travel Southwest
+                r += 1;
+                c -= 1;
+                break;
             case 2: // travel East
-                return checkRow(board, option, player, r, ++c, count, useId) +
-                        checkRow(board, option, player, r, --c, count, useId);
-            case 3: // travel Southeast
-                return checkRow(board, option, player, ++r, ++c, count, useId) +
-                        checkRow(board, option, player, --r, --c, count, useId);
-            default: // travel South
-                return checkRow(board, option, player, ++r, c, count, useId);
+                c += 1;
+                break;
+            case 3: // travel West
+                c -= 1;
+                break;
+            case 4: // travel Southeast
+                r += 1;
+                c += 1;
+                break;
+            case 5: // travel Northwest
+                r -= 1;
+                c -= 1;
+                break;
+            case 6: // travel South
+                r += 1;
+                break;
+            default:
+                return 0;
         }
+
+        if ((r < 0 || r >= getBoard.length)                 ||
+            (c < 0 || c >= getBoard[0].length)              ||
+            (useId && player.getID() != getBoard[r][c])     ||
+            (!useId && getBoard[r][c] == player.getID())    ||
+            (count >= 3))
+            return count;
+
+        return checkRow(board, option, count + 1, player, r, c, useId);
     }
 
-    private static List<Integer> swapNums(int listSize) {
+//    private int checkRow(Board board, int option, Player player, int r, int c, int count, boolean useId) {
+//        int[][] getBoard = board.get();
+//
+//        if ((r < 0 || r >= getBoard.length) || (c < 0 || c >= getBoard[0].length)) return count; // if out of bounds
+//
+//        if (board.get()[r][c] != 0) {
+//            if ((useId && player.getID() != getBoard[r][c]) || (!useId && getBoard[r][c] == player.getID())) {  // if board holds opponent's piece
+//                return count;
+//            }
+//        }
+//
+//        if (++count == 4 || getBoard[r][c] == 0) return count; // if winning option is present or slot is empty
+//
+//        switch (option) { // there are at most 7 directions to check for winning moves
+//            case 1: // travel Northeast
+//                return checkRow(board, option, player, --r, ++c, count, useId) +
+//                        checkRow(board, option, player, ++r, --c, count, useId);
+//            case 2: // travel East
+//                return checkRow(board, option, player, r, ++c, count, useId) +
+//                        checkRow(board, option, player, r, --c, count, useId);
+//            case 3: // travel Southeast
+//                return checkRow(board, option, player, ++r, ++c, count, useId) +
+//                        checkRow(board, option, player, --r, --c, count, useId);
+//            default: // travel South
+//                return checkRow(board, option, player, ++r, c, count, useId);
+//        }
+//    }
+
+    private List<Integer> swapNums(int listSize) {
         List<Integer> list = new ArrayList<>(listSize);
 
-        for (int i = 0; i < listSize; i++) list.set(i, i);
+        for (int i = 0; i < listSize; i++) list.add(i);
 
         Collections.shuffle(list);
 
@@ -115,11 +164,11 @@ public class Computer extends Player {
 
     // getters and setters
 
-    public static void setDifficultyLevel(String difficultyLevel) {
-        difficultyLevel = difficultyLevel;
+    public void setDifficultyLevel(String difficultyLevel) {
+        this.difficultyLevel = difficultyLevel.toUpperCase();
     }
 
     public String getDifficultyLevel() {
-        return difficultyLevel;
+        return this.difficultyLevel;
     }
 }

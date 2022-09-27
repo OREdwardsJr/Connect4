@@ -1,7 +1,6 @@
 package com.connect4;
 
 public class Board {
-    //TODO - Board and BoardScanner can be merged probably. Bring scanner into board
     // Properties
     private final int columns = 7;
     private final int rows = 6;
@@ -10,6 +9,7 @@ public class Board {
 
     private final int i = rows - 1;
     private int[] rowTracker = new int[] {i, i, i, i, i, i, i}; // tracks next available row for column entries
+
 
     // Business methods
     public boolean validMove(int column) {
