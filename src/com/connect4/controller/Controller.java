@@ -2,16 +2,17 @@ package com.connect4.controller;
 
 import com.connect4.Board;
 import com.connect4.Player;
+import com.connect4.Computer;
 
-class Controller {
+public class Controller {
 
-    private static boolean newGame = true;
+    private static final String CPU = "CPU";
+    private static final Communicator COMMUNICATOR = Communicator.newInstance();
+    private static final Board BOARD = new Board();
 
     private static Player player1;
     private static Player player2;
-
-    private static final Communicator COMM = Communicator.newInstance();
-    private static final Board BOARD =  new Board();
+    private static boolean newGame = true;
 
     public static void main(String[] args) {
         while (newGame) { // Start new game
@@ -19,9 +20,9 @@ class Controller {
 
             playGame();
 
-            newGame = COMM.playNewGame();
+            newGame = COMMUNICATOR.playNewGame();
         }
-        COMM.sayGoodBye();
+        COMMUNICATOR.sayGoodBye();
     }
 
     private static void setupGame() {
@@ -29,9 +30,13 @@ class Controller {
 
         // Create players
         // Additional properties can be set in the future (EG: color or slot symbol)
-        player1 = new Player(COMM.newPlayerName(), 1);
-        player2 = new Player(COMM.newPlayerName(), 2);
+        player1 = new Player(COMMUNICATOR.newPlayerName(), 1);
+        player2 = new Player(COMMUNICATOR.newPlayerName(), 2);
 
+        // Set CPU difficulty
+        if (CPU.equalsIgnoreCase(player2.getName())) {
+            Computer.setDifficultyLevel(COMMUNICATOR.selectDifficulty());
+        }
 
         // Randomly assign who's player1 vs player2 via swap
         if ((int) (Math.random() * 100) % 2 != 0) {
@@ -40,7 +45,7 @@ class Controller {
             player1.setName(player2.getName());
             player2.setName(temp);
         }
-        COMM.announcePlayers(player1, player2);
+        COMMUNICATOR.announcePlayers(player1, player2);
     }
 
     private static void playGame() {
@@ -56,9 +61,14 @@ class Controller {
 
             player = (turns++ % 2 == 0) ? player1 : player2;
 
-            // probably need to throw some type of error somewhere
-            while (!validMove) {
-                choice = player.takeTurn(BOARD);
+            // Take turn
+            while (!validMove) { // probably need to throw some type of error somewhere
+                if (CPU.equals(player.getName())) {
+                    choice = Computer.takeTurn(BOARD, player);
+                }
+                else {
+                    choice = player.takeTurn();
+                }
                 validMove = BOARD.validMove(choice);
             }
 

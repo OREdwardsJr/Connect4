@@ -3,29 +3,22 @@ package com.connect4.controller;
 import com.apps.util.Prompter;
 import com.connect4.Player;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Communicator {
     // this class will be used to gather input from user
     /* make sure to clean input so that users cannot insert code
-     *   that causes a vulnerability.
+     * that causes a vulnerability. - we may not have time for this but can speak about it in presentation
      */
-
-    final int MAXPLAYERS = 2;// TODO This may be unnecessary please discuss and then delete.
 
     private static final Communicator COMM = new Communicator();
     private static final Prompter prompter = new Prompter(new Scanner(System.in));
-
-    List<Player> gamePlayers = new ArrayList<>();
 
     public static Communicator newInstance() {
         return COMM;
     }
 
     public String selectDifficulty() {
-
         String level = "1";
 
         boolean quit = false;
@@ -52,6 +45,9 @@ public class Communicator {
         //TODO 09/26 Hency: @Orlando, take a quick glance at this
         // I am returning the name for Player
         // I am also returning the name for Player if the input is "" or "CPU". This method will not be case sensitive
+
+        //TODO 09/27 Orlando: @Hency, let's go with the below and delete the commented out part. I'd like to
+        // keep "CPU" free for user choice as an actual player name. Empty string "" is sufficient for setting 1-player IMO
         Prompter prompter = new Prompter(new Scanner(System.in));
 
         String playerName;
@@ -60,9 +56,11 @@ public class Communicator {
         if (playerName.equals("")) {
             playerName = "CPU";
         }
+        /*
         else if(playerName.equalsIgnoreCase("CPU")){
             playerName="CPU";
         }
+         */
 
         return playerName; // This will return the player name
     }
@@ -70,11 +68,14 @@ public class Communicator {
     public boolean playNewGame() {
         boolean result = false;
 
+        //TODO Orlando: @Hency, would you complete this method for me? I need this to ask the user if they want
+        // to play a new game. If yes then return true - else return false.
+
         return result;
     }
 
     public int takeTurn() {
-        int columnNumber = 0;
+        int columnNumber;
         String move = prompter.prompt("Select your move [1-7]");
         columnNumber = Integer.parseInt(move);
         return columnNumber;
