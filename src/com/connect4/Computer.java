@@ -14,18 +14,17 @@ public class Computer extends Player {
     // We pass a Player object in our signature to allow the computer to
     // monitor id which will be needed to check for connected rows
     public int takeTurn(Board board, Player player) {
-        if ("easy".equalsIgnoreCase(difficultyLevel)) return easy(board);
+        if ("easy".equalsIgnoreCase(this.getDifficultyLevel())) return easy(board);
 
         return medium(board, player);
     }
 
     public int easy(Board board) {
         int choice = 0;
-        int[][] getBoard = board.get();
-        List<Integer> columnChoice = swapNums(getBoard[0].length);
+        List<Integer> columnChoice = swapNums(board.get()[0].length);
 
         for (Integer i : columnChoice) {
-            if (getBoard[0][i] >= 0) {
+            if (board.columnEntries()[i] >= 0) {
                 choice = i;
                 break;
             }
@@ -42,16 +41,16 @@ public class Computer extends Player {
      *  - checkRow() returns the largest number of connected pieces
      */
     public int medium(Board board, Player player) {
-        // index 0 is the position - index 1 is the count of connected pieces
+        // index 0 is the position - index 1 is the count of matching connected pieces
         int[] cpuBestOption;
         int[] opponentBestOption;
 
         cpuBestOption = findBestOption(board, player, true);
         opponentBestOption = findBestOption(board, player, false);
 
-        if (cpuBestOption[1] == 4) return cpuBestOption[0]; // win game
+        if (cpuBestOption[1] >= 3) return cpuBestOption[0]; // win game
 
-        if (opponentBestOption[1] == 4) return opponentBestOption[0]; // try to prevent winning move from opponent
+        if (opponentBestOption[1] >= 3) return opponentBestOption[0]; // try to prevent winning move from opponent
 
         return cpuBestOption[0]; // return option with the longest connection of cpu pieces
     }
@@ -63,13 +62,14 @@ public class Computer extends Player {
 
         for (c = 0; c < board.get()[0].length; c++) {
             r = board.columnEntries()[c];
-            for (int option = 1; option < 7; option++) {
+            if (r < 0) continue;
+            for (int option = 0; option < 7; option++) {
                 currentValue = checkRow(board, option, count, player, r, c, useId) +
                         checkRow(board, option + 1, count, player, r, c, useId);
                 if (currentValue > bestOption[1]) {
                     bestOption[0] = option;
                     bestOption[1] = currentValue;
-                    if (bestOption[1] == 4) break;
+                    if (bestOption[1] >= 3) break;
                 }
             }
         }

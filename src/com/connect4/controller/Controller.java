@@ -1,25 +1,24 @@
 package com.connect4.controller;
 
 import com.connect4.Board;
-import com.connect4.Display;
 import com.connect4.Player;
 import com.connect4.Computer;
 
 public class Controller {
 
-    private static final String CPU = "CPU";
-    private static final Communicator COMMUNICATOR = Communicator.newInstance();
-    private static final Board BOARD = new Board();
+    private final String CPU = "CPU";
+    private final Communicator COMMUNICATOR = Communicator.newInstance();
+    private final Board BOARD = new Board();
 
-    private static Player player1;
-    private static Player player2;
-    private static Computer computer1;
-    private static Computer computer2;
-    private static Display display;
+    private Player player1;
+    private Player player2;
+    private Computer computer1;
+    private Computer computer2;
+    private Display display;
 
-    private static boolean newGame = true;
+    private boolean newGame = true;
 
-    public static void run() {
+    public void go() {
         while (newGame) { // Start new game
             setupGame();
 
@@ -30,7 +29,7 @@ public class Controller {
         COMMUNICATOR.sayGoodBye();
     }
 
-    private static void setupGame() {
+    private void setupGame() {
         BOARD.clear();
 
         // Create players
@@ -55,7 +54,7 @@ public class Controller {
         COMMUNICATOR.announcePlayers(player1, player2);
     }
 
-    private static void playGame() {
+    private void playGame() {
         boolean validMove;
         int choice = 0;
         int turns = 0;
