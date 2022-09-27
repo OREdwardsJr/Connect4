@@ -117,8 +117,6 @@ public class BoardTest {
         assertArrayEquals(board.get(), new Board().get());
     }
 
-    // BOARDSCANNER TESTING
-
 
     @Test
     public void winnerDetected_shouldReturnTrue_whenWinningComboPresent() {
@@ -127,6 +125,9 @@ public class BoardTest {
         board.occupySlot(p1, 0);
         board.occupySlot(p1, 1);
         board.occupySlot(p1, 2);
+        board.occupySlot(p1, 3);
+
+        System.out.println(Arrays.toString(board.columnEntries()));
         assertTrue(board.winnerDetected(p1,3));
 
         // Vertical
@@ -134,7 +135,8 @@ public class BoardTest {
         board.occupySlot(p1, 0);
         board.occupySlot(p1, 0);
         board.occupySlot(p1, 0);
-        dump();
+        board.occupySlot(p1, 0);
+
         assertTrue(board.winnerDetected(p1,0));
 
         // Diagonal
@@ -151,6 +153,7 @@ public class BoardTest {
         board.occupySlot(p2, 3);
         board.occupySlot(p2, 3);
         board.occupySlot(p2, 3);
+        board.occupySlot(p1, 3);
 
         assertTrue(board.winnerDetected(p1, 3));
 
@@ -178,6 +181,8 @@ public class BoardTest {
 
         board.occupySlot(p1, 6);
 
+        board.occupySlot(p1, 3);
+
         assertTrue(board.winnerDetected(p1, 3));
 
         // Complicated diagonal for p2
@@ -203,6 +208,8 @@ public class BoardTest {
         board.occupySlot(p2, 5);
 
         board.occupySlot(p2, 6);
+
+        board.occupySlot(p2, 3);
 
         assertTrue(board.winnerDetected(p2, 3));
     }
