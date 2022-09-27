@@ -1,7 +1,5 @@
 package com.connect4;
 
-import java.util.Arrays;
-
 public class Board {
     //TODO - Board and BoardScanner can be merged probably. Bring scanner into board
     // Properties
@@ -26,9 +24,10 @@ public class Board {
 
     public boolean winnerDetected(Player player, int column) {
         // tracks the longest chain where slots are previously filled by player's id next to empty slot
-        int longestChain = 0;
         int currChain = 0;
+        int longestChain = 0;
         int count = 0;
+
 
         /*
          * currChain holds the total number of contiguous pieces matching player.id
@@ -45,6 +44,62 @@ public class Board {
         return (longestChain >= 3);
     }
 
+    public static int checkRow(Board board, int option, int count, Player player, int r, int c) {
+        /*
+         * Checks for 3 matching pieces to player.getID() all valid directions.
+         * Our recursive calls need to have count passed as 0 due to us technically searching for the number of
+         * matching surrounding pieces.
+         *
+         * EG: [_ _ O _ O O _] We'd want to add our O piece to index 3. CheckRow registers that there are three matching
+         * slots as it will return results of a recursive search headed left of index 3 and headed right of index 3
+         * 1 + 2 will return 3, which means that if we enter into that slot we will now have 4 connecting pieces
+         * and will win the game.
+         *
+         * Note - if count no longer gets passed as -1 when checkRow is originally called then adjust logic below
+         */
+        // recursive method that travels in a direction based on option while count < 4
+        int[][] getBoard = board.get();
+
+        switch (option) {
+            case 0: // travel Northeast
+                r -= 1;
+                c += 1;
+                break;
+            case 1: // travel Southwest
+                r += 1;
+                c -= 1;
+                break;
+            case 2: // travel East
+                c += 1;
+                break;
+            case 3: // travel West
+                c -= 1;
+                break;
+            case 4: // travel Southeast
+                r += 1;
+                c += 1;
+                break;
+            case 5: // travel Northwest
+                r -= 1;
+                c -= 1;
+                break;
+            case 6: // travel South
+                r += 1;
+                break;
+            default:
+                return 0;
+        }
+
+        if ((r < 0 || r >= getBoard.length)    ||
+                (c < 0 || c >= getBoard[0].length) ||
+                (player.getID() != getBoard[r][c])) // empty spaces after first iterations are not accepted
+            return count;
+
+        if (count >= 3) return count;
+
+        return checkRow(board, option, count + 1, player, r, c);
+    }
+
     public void clear() {
         board = new int[rows][columns];
         rowTracker = new int[] {i, i, i, i, i, i, i};
@@ -56,40 +111,5 @@ public class Board {
 
     public int[] columnEntries() {
         return this.rowTracker;
-    }
-
-    private static class BoardScanner {
-        // Checks for 4 matching pieces to player.getID() all valid directions.
-        public static int checkRow(Board board, int option, int count, Player player, int r, int c) {
-            int[][] getBoard = board.get();
-
-            switch (option) {
-                case 0:
-                    r -= 1; c += 1; break;  // travel Northeast
-                case 1:
-                    r += 1; c -= 1; break;  // travel Southwest
-                case 2:
-                            c += 1; break;  // travel East
-                case 3:
-                            c -= 1; break;  // travel West
-                case 4:
-                    r += 1; c += 1; break;  // travel Southeast
-                case 5:
-                    r -= 1; c -= 1; break;  // travel Northwest
-                case 6:
-                    r += 1;         break;  // travel South
-                default:
-                    return count;           // North cannot be traveled. count == 0
-            }
-
-            if ((r < 0 || r >= getBoard.length)     ||
-                (c < 0 || c >= getBoard[0].length)  ||
-                (player.getID() != getBoard[r][c]))
-                return count;
-
-            if (count == 3) return count;
-
-            return checkRow(board, option, count + 1, player, r, c);
-        }
     }
 }

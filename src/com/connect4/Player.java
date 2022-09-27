@@ -19,26 +19,31 @@ public class Player {
     }
 
     // business methods
-    public int takeTurn(Board board) { // returns the column index choice
-        // 9/26 Orlando: @Hency maybe pass the difficultly level to cpuTakeTurn?
-        if ("CPU".equals(getName())) return cpuTakeTurn(board, this);
+    public int takeTurn() { // returns the column index choice
+        //TODO 9/27 Orlando: Refactored where Player doesn't call on Computer for logic. Controller now handles this
+        // saving for review from Hency before deleting
+
+        //if ("CPU".equals(getName())) return cpuTakeTurn(board, this);
 
         // Grabs column choice from user accounting for user entry being 1-indexed based
         // should probably return columnNumber - 1 within COMM.takeTurn();
         return COMM.takeTurn() - 1;
     }
 
-    private int cpuTakeTurn(Board board, Player player) {
-        int choice = 0;
+    //TODO: Orlando -  Same from above
+//    private int cpuTakeTurn(Board board, Player player) {
+//
+//        int choice = 0;
+//
+//        if ("Easy".equals(player.getDifficultyLevel())){
+//            choice = Computer.easy(board,player);
+//        }
+//        else if (COMM.selectDifficulty().equals("2")){
+//            choice = Computer.medium(board,player);
+//        }
+//        return choice;
+//    }
 
-        if (COMM.selectDifficulty().equals("Easy")){
-            choice = Computer.easy(board,player);
-        }
-        else {
-            choice = Computer.medium(board,player);
-        }
-        return choice;
-    }
 
     public void announceVictory(boolean winnerDetected) {
         COMM.announceVictory(this, winnerDetected);
@@ -57,12 +62,7 @@ public class Player {
         return ID;
     }
 
-
-    public void setID(int ID) { //TODO Hency:  Discuss on whether or not the setID field is private and static
-                                // 09/26 Orlando: @Hency I agree setID could be private. However, you're using it in
-                                // Communicator.newPlayerName() so that method would need to be changed.
-                                // I don't think it should be static as we both saw the problem
-                                // that static brought with the names. I'm open to discuss further just let me know.
+    private void setID(int ID) {
         /* the id is important because the corresponding symbol is based
          * on the player's id. EG: X for id 1 and O for id 2.
          * While names may be changed, it is not expected that the

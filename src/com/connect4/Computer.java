@@ -4,9 +4,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class Computer {
+public class Computer extends Player {
+    private static String difficultyLevel;
 
-    public static int easy(Board board, Player player) {
+    public Computer(String difficultyLevel) {
+        setDifficultyLevel(difficultyLevel);
+    }
+
+    // We pass a Player object in our signature to allow the computer to
+    // monitor id which will be needed to check for connected rows
+    public static int takeTurn(Board board, Player player) {
+        if ("easy".equalsIgnoreCase(difficultyLevel)) return easy(board);
+
+        return medium(board, player);
+    }
+
+    public static int easy(Board board) {
         int choice = 0;
         int[][] getBoard = board.get();
         List<Integer> columnChoice = swapNums(getBoard[0].length);
@@ -90,13 +103,23 @@ class Computer {
         }
     }
 
-    private static List<Integer> swapNums(int arrSize) {
-        List<Integer> arr = new ArrayList<>(arrSize);
+    private static List<Integer> swapNums(int listSize) {
+        List<Integer> list = new ArrayList<>(listSize);
 
-        for (int i = 0; i < arrSize; i++) arr.set(i, i);
+        for (int i = 0; i < listSize; i++) list.set(i, i);
 
-        Collections.shuffle(arr);
+        Collections.shuffle(list);
 
-        return arr;
+        return list;
+    }
+
+    // getters and setters
+
+    public static void setDifficultyLevel(String difficultyLevel) {
+        difficultyLevel = difficultyLevel;
+    }
+
+    public String getDifficultyLevel() {
+        return difficultyLevel;
     }
 }
