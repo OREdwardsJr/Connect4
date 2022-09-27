@@ -1,20 +1,17 @@
-package com.connect4.controller;
+package com.connect4;
 
-import com.connect4.Board;
-import com.connect4.Display;
-import com.connect4.Player;
-import com.connect4.Computer;
+import com.connect4.controller.Communicator;
 
-public class Controller {
-
+class ControllerClassForTesting {
     private static final String CPU = "CPU";
-    private static final Communicator COMMUNICATOR = Communicator.newInstance();
+
     private static final Board BOARD = new Board();
 
-    private static Player player1;
-    private static Player player2;
-    private static Computer computer1;
-    private static Computer computer2;
+    public static final Communicator COMMUNICATOR = Communicator.newInstance();
+    public static Player player1;
+    public static Player player2;
+    public static Computer computer1;
+    public static Computer computer2;
 
     private static boolean newGame = true;
 
@@ -29,21 +26,14 @@ public class Controller {
         COMMUNICATOR.sayGoodBye();
     }
 
-    private static void setupGame() {
+    public static void setupGame() {
         BOARD.clear();
-        System.out.println("hey");
 
-        // Create players
-        // Additional properties can be set in the future (EG: color or slot symbol)
-        player1 = new Player(COMMUNICATOR.newPlayerName(), 1);
-        if (CPU.equalsIgnoreCase(player1.getName())) {
-            computer1 = new Computer(COMMUNICATOR.selectDifficulty());
-        }
+        player1 = new Player("CPU", 1);
+        player2 = new Player("CPU", 2);
 
-        player2 = new Player(COMMUNICATOR.newPlayerName(), 2);
-        if (CPU.equalsIgnoreCase(player2.getName())) {
-            computer2 = new Computer(COMMUNICATOR.selectDifficulty());
-        }
+        computer1 = new Computer("easy");
+        computer2 = new Computer("medium");
 
         // Swap names if value of equation is an odd number
         if ((int) (Math.random() * 100) % 2 != 0) {
@@ -55,7 +45,7 @@ public class Controller {
         COMMUNICATOR.announcePlayers(player1, player2);
     }
 
-    private static void playGame() {
+    public static void playGame() {
         boolean validMove;
         int choice = 0;
         int turns = 0;
@@ -94,7 +84,3 @@ public class Controller {
         COMMUNICATOR.announceVictory(player, winnerDetected);
     }
 }
-
-/*
- * If time permits then implement a scoreboard
- */

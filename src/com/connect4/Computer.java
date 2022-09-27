@@ -106,7 +106,7 @@ public class Computer extends Player {
     private List<Integer> swapNums(int listSize) {
         List<Integer> list = new ArrayList<>(listSize);
 
-        for (int i = 0; i < listSize; i++) list.set(i, i);
+        for (int i = 0; i < listSize; i++) list.add(i);
 
         Collections.shuffle(list);
 
