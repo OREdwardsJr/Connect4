@@ -62,7 +62,7 @@ public class Display {
         Display.printDisplay();
     }
 
-    public void updateDisplay(Player player, int row, int column) {
+    public static void updateDisplay(Player player, int row, int column) {
 
         String boardPiece = "X";
 
