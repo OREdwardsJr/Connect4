@@ -1,6 +1,7 @@
 package com.connect4;
 
 public class Board {
+    //TODO - Board and BoardScanner can be merged probably. Bring scanner into board
     // Properties
     private final int columns = 7;
     private final int rows = 6;
@@ -11,8 +12,8 @@ public class Board {
     private int[] rowTracker = new int[] {i, i, i, i, i, i, i}; // tracks next available row for column entries
 
     // Business methods
-    public boolean validMove(int column) { //TODO move this to BoardScanner
-        return (column < rowTracker.length && rowTracker[column] >= 0);
+    public boolean validMove(int column) {
+        return (0 < column && column < rowTracker.length && rowTracker[column] >= 0);
     }
 
     public void occupySlot(Player player, int columnChoice) {
@@ -27,15 +28,19 @@ public class Board {
         int longestChain = 0;
         int count = 0;
 
-        this.get()[rowTracker[column]][column] = player.getID();
 
-        for (int i = 0; i < 7; i+=2) {
-            currChain = checkRow(this, i, count, player, rowTracker[column], column) +
-                    checkRow(this, i+1, count, player, rowTracker[column], column);
+        /*
+         * currChain holds the total number of contiguous pieces matching player.id
+         * in two directions that would form a straight line in each valid winning directions.
+         * The equation is: BoardScanner.checkRow("direction 1") + BoardScanner.checkRow("direction 2")
+         * whereas checkRow's signature would be equal other than option being passed as option + 1 for direction two.
+         */
+        for (int option = 0; option < 7; option+=2) {
+            currChain = BoardScanner.checkRow(this, option, count, player, rowTracker[column] + 1, column) +
+                    BoardScanner.checkRow(this, option + 1, count, player, rowTracker[column] + 1, column);
             if (longestChain < 3) longestChain = Math.max(currChain, longestChain);
             else break;
         }
-        this.get()[rowTracker[column]][column] = 0;
         return (longestChain >= 3);
     }
 
