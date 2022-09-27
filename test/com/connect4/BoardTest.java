@@ -9,16 +9,28 @@ import java.util.Arrays;
 import static org.junit.Assert.*;
 
 public class BoardTest {
-    Board board;
-    Player p1;
+    public static Board board = new Board();
+    public static Player p1 = new Player("Orlando", 1);
+    public static Player p2 = new Player("Shyan", -1);
 
-    @BeforeClass
-    public static void beforeClass() throws Exception {
-        Player p1 = new Player("Orlando", 1);
+    public static void fillBoard() {
+        for (int i = board.columnEntries()[0]; i > 0; i--) {
+            for (int j = 0; j < board.get()[0].length; j++) {
+                board.occupySlot(p1, j);
+            }
+        }
+    }
+
+    public static void dump() {
+        for (int[] row : board.get()) {
+            System.out.println(Arrays.toString(row));
+        }
+        System.out.println();
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void beforeClass() throws Exception {
+        Player p1 = new Player("Orlando", 1);
         Board board = new Board();
     }
 
@@ -42,6 +54,7 @@ public class BoardTest {
     }
 
     // occupySlot()
+    @Test
     public void columnEntries_shouldPrintToConsole_matchingCallsTo_BoardOccupySlot() {
         Board board = new Board();
         Player p1 = new Player("Orlando", 1);
@@ -94,6 +107,104 @@ public class BoardTest {
             board.occupySlot(p1, 6);
             System.out.println(Arrays.toString(board.columnEntries()));
         }
+    }
+
+    @Test
+    public void clear_shouldResetBoard_whenCalled() {
+        fillBoard();
+        board.clear();
+
+        assertArrayEquals(board.get(), new Board().get());
+    }
+
+    // BOARDSCANNER TESTING
+
+
+    @Test
+    public void winnerDetected_shouldReturnTrue_whenWinningComboPresent() {
+        // Horizontal
+        board.clear();
+        board.occupySlot(p1, 0);
+        board.occupySlot(p1, 1);
+        board.occupySlot(p1, 2);
+        assertTrue(board.winnerDetected(p1,3));
+
+        // Vertical
+        board.clear();
+        board.occupySlot(p1, 0);
+        board.occupySlot(p1, 0);
+        board.occupySlot(p1, 0);
+        dump();
+        assertTrue(board.winnerDetected(p1,0));
+
+        // Diagonal
+        board.clear();
+        board.occupySlot(p1, 0);
+
+        board.occupySlot(p2, 1);
+        board.occupySlot(p1, 1);
+
+        board.occupySlot(p2, 2);
+        board.occupySlot(p2, 2);
+        board.occupySlot(p1, 2);
+
+        board.occupySlot(p2, 3);
+        board.occupySlot(p2, 3);
+        board.occupySlot(p2, 3);
+
+        assertTrue(board.winnerDetected(p1, 3));
+
+        // Complicated diagonal for p1
+        board.clear();
+        board.occupySlot(p1, 0);
+
+        board.occupySlot(p2, 1);
+        board.occupySlot(p1, 1);
+
+        board.occupySlot(p2, 2);
+        board.occupySlot(p2, 2);
+        board.occupySlot(p1, 2);
+
+        board.occupySlot(p2, 3);
+        board.occupySlot(p2, 3);
+        board.occupySlot(p2, 3);
+
+        board.occupySlot(p2, 4);
+        board.occupySlot(p2, 4);
+        board.occupySlot(p1, 4);
+
+        board.occupySlot(p2, 5);
+        board.occupySlot(p1, 5);
+
+        board.occupySlot(p1, 6);
+
+        assertTrue(board.winnerDetected(p1, 3));
+
+        // Complicated diagonal for p2
+        board.clear();
+        board.occupySlot(p2, 0);
+
+        board.occupySlot(p1, 1);
+        board.occupySlot(p2, 1);
+
+        board.occupySlot(p1, 2);
+        board.occupySlot(p1, 2);
+        board.occupySlot(p2, 2);
+
+        board.occupySlot(p1, 3);
+        board.occupySlot(p1, 3);
+        board.occupySlot(p1, 3);
+
+        board.occupySlot(p1, 4);
+        board.occupySlot(p1, 4);
+        board.occupySlot(p2, 4);
+
+        board.occupySlot(p1, 5);
+        board.occupySlot(p2, 5);
+
+        board.occupySlot(p2, 6);
+
+        assertTrue(board.winnerDetected(p2, 3));
     }
 }
 
