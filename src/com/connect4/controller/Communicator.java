@@ -66,12 +66,19 @@ public class Communicator {
         return playerName; // This will return the player name
     }
 
-    public boolean playNewGame() {
+    public boolean playNewGame(boolean winnerDetected) {
         boolean result = false;
+        String newGameQuery;
 
-        //TODO Orlando: @Hency, would you complete this method for me? I need this to ask the user if they want
-        // to play a new game. If yes then return true - else return false.
-
+        if (winnerDetected){
+            newGameQuery = prompter.prompt("Would you like to play a new game? [Y-N]");
+            if (newGameQuery.equalsIgnoreCase("Y") || newGameQuery.equalsIgnoreCase("N")){
+                result=true;
+            }
+            else{
+                result=false;
+            }
+        }
         return result;
     }
 
