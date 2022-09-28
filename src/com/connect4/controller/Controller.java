@@ -103,6 +103,7 @@ public class Controller {
         Console.clear();
         display.print();
         communicator.announceVictory(player, winnerDetected);
+
     }
 
     private void endGame() {
