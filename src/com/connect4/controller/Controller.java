@@ -76,7 +76,7 @@ public class Controller {
                     else choice = computer2.takeTurn(board, player);
                 }
                 else {
-                    System.out.println(player.getName()+"...");//prints out player name
+                    System.out.print(player.getName()+"--> ");//prints out player name
                     choice = player.takeTurn();
                 }
                 if (-2 == choice) endGame(); // terminates game
