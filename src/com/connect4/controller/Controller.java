@@ -84,6 +84,8 @@ public class Controller {
                 validMove = board.validMove(choice);
             }
 
+            System.out.println();
+            if (CPU.equalsIgnoreCase(player.getName())) System.out.println("Computer's choice: " + (choice + 1));
 
             // Update and print display
             //TODO: @Hency Add the clear board method here
