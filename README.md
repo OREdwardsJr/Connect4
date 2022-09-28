@@ -70,15 +70,22 @@
 </details>
 
 <!-- MEET THE TEAM -->
-## Meet The Contributors - Ad HOC
+## Meet The Contributors - Ad HOC - and their contributions
   - ### Hency 
     - [![LinkedIn][linkedin-shield]][linkedin-url-hency]
   - ### Orlando 
     - High-level design
     - End game detection logic
     - Computer logic
+    - ReadMe
     - [![LinkedIn][linkedin-shield]][linkedin-url-orlando]
   - ### Coel  [![LinkedIn][linkedin-shield]][linkedin-url-coel]
+
+<!-- Agenda -->
+## Agenda
+- #### High level overview of project
+- #### Demo of app
+- #### QnA / Technical discussion
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
