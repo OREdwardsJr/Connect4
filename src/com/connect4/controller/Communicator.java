@@ -148,7 +148,9 @@ public class Communicator {
         }
     }
 
-    public void sayGoodBye() {
-        System.out.println("Goodbye!");
+    public void sayGoodBye() throws IOException {
+        String goodBye = Files.readString(Path.of("images/goodbye.txt"));
+        System.out.println(goodBye);
+        //System.out.println("Goodbye!");
     }
 }
