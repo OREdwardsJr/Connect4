@@ -24,13 +24,11 @@ class DummyController {
     public static void run() throws IOException {
         while (newGame) { // Start new game
             setupGame();
-
             try {
                 playGame();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             newGame = COMMUNICATOR.playNewGame();
         }
         COMMUNICATOR.sayGoodBye();

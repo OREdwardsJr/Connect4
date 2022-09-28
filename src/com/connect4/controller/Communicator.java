@@ -77,7 +77,6 @@ public class Communicator {
             return playerName; // This will return the player name
     }
 
-
     public boolean playNewGame() {
         boolean result = false;
         boolean quitLoopNewGame = false;
@@ -137,11 +136,9 @@ public class Communicator {
                     String playerTwoWins = Files.readString(Path.of("images/player2wins.txt"));
                     System.out.println(playerTwoWins);
                 }
-                // System.out.println("Player " + player.getPlayerID() + " wins!");
             } else {
                     String tieGame =  Files.readString(Path.of("images/tiegame.txt"));
                 System.out.println(tieGame);
-                // System.out.println("Tie game!");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -151,6 +148,5 @@ public class Communicator {
     public void sayGoodBye() throws IOException {
         String goodBye = Files.readString(Path.of("images/goodbye.txt"));
         System.out.println(goodBye);
-        //System.out.println("Goodbye!");
     }
 }
