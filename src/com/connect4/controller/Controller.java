@@ -72,11 +72,11 @@ public class Controller {
             // Take turn
             while (!validMove) { // probably need to throw some type of error somewhere
                 if (CPU.equalsIgnoreCase(player.getName())) {
-                    System.out.println(player.getPlayerID());
                     if (1 == player.getPlayerID()) choice = computer1.takeTurn(board, player);
                     else choice = computer2.takeTurn(board, player);
                 }
                 else {
+                    System.out.println(player.getName()+"...");//prints out player name
                     choice = player.takeTurn();
                 }
                 if (-2 == choice) endGame(); // terminates game
@@ -84,7 +84,9 @@ public class Controller {
                 validMove = board.validMove(choice);
             }
 
+
             // Update and print display
+            //TODO: @Hency Add the clear board method here
             display.update(player, board.columnEntries()[choice], choice);
             display.print();
 

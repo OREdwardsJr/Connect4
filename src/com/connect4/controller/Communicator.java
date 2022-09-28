@@ -62,7 +62,7 @@ public class Communicator {
                     System.out.println("Invalid entry, for Computer/CPU player please press return.");
                     break;
                 case("c p u"):case("cp u"):case("c pu"):
-                    System.out.println("Invalid entry... but funny, I will allow it. However this is NOT a Computer/CPU player. You are now player: The-Comedian");
+                    System.out.println("Invalid entry... but funny, I will allow it.\nHowever this is NOT a Computer/CPU player.\nYou are now player: The-Comedian");
                     playerName=("The-Comedian");
                     quitNewPlayerName = true;
                     break;
@@ -81,7 +81,7 @@ public class Communicator {
         String newGameQuery;
 
         while(!quitLoopNewGame){
-            newGameQuery = prompter.prompt("Would you like to play a new game? [Y-N]");
+            newGameQuery = prompter.prompt("Would you like to play a new game? [Y-N]:");
 
             switch (newGameQuery.toLowerCase()){
                 case ("y"):
@@ -104,7 +104,7 @@ public class Communicator {
         String move;
 
         while(!quitLoopTakeTurn){
-            move = prompter.prompt("Select your move [1-7] (-1 to quit game)");
+            move = prompter.prompt("Select your move [1-7] (-1 to quit game):");
 
             switch (move){
                 case("1"):case("2"):case("3"):case("4"):case("5"):case("6"):case("7"):case("-1"):
@@ -112,7 +112,7 @@ public class Communicator {
                     quitLoopTakeTurn = true;
                     break;
                 default:
-                    System.out.println("Invalid move, please select a number [1-7]");
+                    System.out.println("Invalid move, please select a number [1-7].");
             }
         }
 
@@ -133,6 +133,6 @@ public class Communicator {
     }
 
     public void sayGoodBye() {
-        System.out.println("goodbye");
+        System.out.println("Goodbye!");
     }
 }
