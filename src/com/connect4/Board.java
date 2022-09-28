@@ -11,7 +11,7 @@ public class Board {
 
     // Business methods
     public void occupySlot(Player player, int columnChoice) {
-        board[rowTracker[columnChoice]][columnChoice] = player.getID();
+        board[rowTracker[columnChoice]][columnChoice] = player.getPlayerID();
 
         rowTracker[columnChoice]--;
     }
@@ -38,7 +38,7 @@ public class Board {
 
     public int checkRow(Board board, int option, int count, Player player, int r, int c) {
         /*
-         * Checks for 3 matching pieces to player.getID() in all valid directions.
+         * Checks for 3 matching pieces to player.getPlayerID() in all valid directions.
          * Our recursive calls need to have count passed as 0 due to us technically searching for the number of
          * matching surrounding pieces without explicitly accounting for the empty slot the piece is dropped into.
          *
@@ -70,7 +70,7 @@ public class Board {
 
         if ((r < 0 || r >= getBoard.length)     ||
             (c < 0 || c >= getBoard[0].length)  ||
-            (player.getID() != getBoard[r][c]) ||
+            (player.getPlayerID() != getBoard[r][c]) ||
             (count >= 3))
             return count;
 

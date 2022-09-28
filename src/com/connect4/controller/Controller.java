@@ -60,7 +60,7 @@ public class Controller {
         int turns = 0;
         boolean startNewRound = true;
         boolean winnerDetected = false;
-        Player player = player1;    // set to player1 only to quiet IDE warnings.
+        Player player = player1;
 
         while (startNewRound) {
             validMove = false;
@@ -70,7 +70,7 @@ public class Controller {
             // Take turn
             while (!validMove) { // probably need to throw some type of error somewhere
                 if (CPU.equalsIgnoreCase(player.getName())) {
-                    if (1 == player.getID()) choice = computer1.takeTurn(BOARD, player);
+                    if (1 == player.getPlayerID()) choice = computer1.takeTurn(BOARD, player);
                     else choice = computer2.takeTurn(BOARD, player);
                 }
                 else {

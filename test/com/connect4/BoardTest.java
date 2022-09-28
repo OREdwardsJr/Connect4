@@ -127,7 +127,7 @@ public class BoardTest {
         board.occupySlot(p1, 2);
         board.occupySlot(p1, 0);
 
-        assertTrue(board.winnerDetected(p1,0));
+        assertTrue(board.winnerDetected(p1, 0));
         board.clear();
 
         board.occupySlot(p1, 0);
@@ -135,7 +135,7 @@ public class BoardTest {
         board.occupySlot(p1, 2);
         board.occupySlot(p1, 1);
 
-        assertTrue(board.winnerDetected(p1,1));
+        assertTrue(board.winnerDetected(p1, 1));
         board.clear();
 
         board.occupySlot(p1, 0);
@@ -143,7 +143,7 @@ public class BoardTest {
         board.occupySlot(p1, 3);
         board.occupySlot(p1, 2);
 
-        assertTrue(board.winnerDetected(p1,2));
+        assertTrue(board.winnerDetected(p1, 2));
         board.clear();
 
         board.occupySlot(p1, 0);
@@ -151,7 +151,7 @@ public class BoardTest {
         board.occupySlot(p1, 2);
         board.occupySlot(p1, 3);
 
-        assertTrue(board.winnerDetected(p1,3));
+        assertTrue(board.winnerDetected(p1, 3));
 
         // Vertical
         board.occupySlot(p1, 0);
@@ -159,7 +159,7 @@ public class BoardTest {
         board.occupySlot(p1, 0);
         board.occupySlot(p1, 0);
 
-        assertTrue(board.winnerDetected(p1,0));
+        assertTrue(board.winnerDetected(p1, 0));
         board.clear();
 
         board.occupySlot(p1, 0);
@@ -167,7 +167,7 @@ public class BoardTest {
         board.occupySlot(p1, 0);
         board.occupySlot(p1, 0);
 
-        assertTrue(board.winnerDetected(p1,0));
+        assertTrue(board.winnerDetected(p1, 0));
         board.clear();
 
         board.occupySlot(p1, 1);
@@ -175,7 +175,7 @@ public class BoardTest {
         board.occupySlot(p1, 1);
         board.occupySlot(p1, 1);
 
-        assertTrue(board.winnerDetected(p1,1));
+        assertTrue(board.winnerDetected(p1, 1));
         board.clear();
 
         board.occupySlot(p1, 2);
@@ -183,7 +183,7 @@ public class BoardTest {
         board.occupySlot(p1, 2);
         board.occupySlot(p1, 2);
 
-        assertTrue(board.winnerDetected(p1,2));
+        assertTrue(board.winnerDetected(p1, 2));
         board.clear();
 
         // with blocker
@@ -194,7 +194,7 @@ public class BoardTest {
         board.occupySlot(p1, 0);
         board.occupySlot(p1, 0);
 
-        assertTrue(board.winnerDetected(p1,0));
+        assertTrue(board.winnerDetected(p1, 0));
         board.clear();
 
         // Diagonal
@@ -279,12 +279,12 @@ public class BoardTest {
         board.occupySlot(p1, 1);
         board.occupySlot(p1, 2);
 
-        assertFalse(board.winnerDetected(p1,0));
-        assertFalse(board.winnerDetected(p1,1));
-        assertFalse(board.winnerDetected(p1,2));
-        assertFalse(board.winnerDetected(p1,3));
-        assertFalse(board.winnerDetected(p1,4));
-        assertFalse(board.winnerDetected(p1,5));
+        assertFalse(board.winnerDetected(p1, 0));
+        assertFalse(board.winnerDetected(p1, 1));
+        assertFalse(board.winnerDetected(p1, 2));
+        assertFalse(board.winnerDetected(p1, 3));
+        assertFalse(board.winnerDetected(p1, 4));
+        assertFalse(board.winnerDetected(p1, 5));
 
         // Vertical
         board.clear();
@@ -292,12 +292,12 @@ public class BoardTest {
         board.occupySlot(p1, 0);
         board.occupySlot(p1, 0);
 
-        assertFalse(board.winnerDetected(p1,0));
-        assertFalse(board.winnerDetected(p1,1));
-        assertFalse(board.winnerDetected(p1,2));
-        assertFalse(board.winnerDetected(p1,3));
-        assertFalse(board.winnerDetected(p1,4));
-        assertFalse(board.winnerDetected(p1,5));
+        assertFalse(board.winnerDetected(p1, 0));
+        assertFalse(board.winnerDetected(p1, 1));
+        assertFalse(board.winnerDetected(p1, 2));
+        assertFalse(board.winnerDetected(p1, 3));
+        assertFalse(board.winnerDetected(p1, 4));
+        assertFalse(board.winnerDetected(p1, 5));
         board.clear();
 
         // Diagonal
@@ -314,12 +314,12 @@ public class BoardTest {
         board.occupySlot(p2, 3);
         board.occupySlot(p2, 3);
 
-        assertFalse(board.winnerDetected(p1,0));
-        assertFalse(board.winnerDetected(p1,1));
-        assertFalse(board.winnerDetected(p1,2));
-        assertFalse(board.winnerDetected(p1,3));
-        assertFalse(board.winnerDetected(p1,4));
-        assertFalse(board.winnerDetected(p1,5));
+        assertFalse(board.winnerDetected(p1, 0));
+        assertFalse(board.winnerDetected(p1, 1));
+        assertFalse(board.winnerDetected(p1, 2));
+        assertFalse(board.winnerDetected(p1, 3));
+        assertFalse(board.winnerDetected(p1, 4));
+        assertFalse(board.winnerDetected(p1, 5));
         board.clear();
 
         // Complicated diagonal for p1
@@ -345,12 +345,12 @@ public class BoardTest {
 
         board.occupySlot(p1, 6);
 
-        assertFalse(board.winnerDetected(p1,0));
-        assertFalse(board.winnerDetected(p1,1));
-        assertFalse(board.winnerDetected(p1,2));
-        assertFalse(board.winnerDetected(p1,3));
-        assertFalse(board.winnerDetected(p1,4));
-        assertFalse(board.winnerDetected(p1,5));
+        assertFalse(board.winnerDetected(p1, 0));
+        assertFalse(board.winnerDetected(p1, 1));
+        assertFalse(board.winnerDetected(p1, 2));
+        assertFalse(board.winnerDetected(p1, 3));
+        assertFalse(board.winnerDetected(p1, 4));
+        assertFalse(board.winnerDetected(p1, 5));
         board.clear();
 
         // Complicated diagonal for p2
@@ -376,12 +376,12 @@ public class BoardTest {
 
         board.occupySlot(p2, 6);
 
-        assertFalse(board.winnerDetected(p2,0));
-        assertFalse(board.winnerDetected(p2,1));
-        assertFalse(board.winnerDetected(p2,2));
-        assertFalse(board.winnerDetected(p2,3));
-        assertFalse(board.winnerDetected(p2,4));
-        assertFalse(board.winnerDetected(p2,5));
+        assertFalse(board.winnerDetected(p2, 0));
+        assertFalse(board.winnerDetected(p2, 1));
+        assertFalse(board.winnerDetected(p2, 2));
+        assertFalse(board.winnerDetected(p2, 3));
+        assertFalse(board.winnerDetected(p2, 4));
+        assertFalse(board.winnerDetected(p2, 5));
     }
 }
 

@@ -7,7 +7,8 @@ public class Display {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_RED   = "\u001B[31m";
-    private static final String[][] values = new String[6][7];    // declare # of rows then declare # of columns.
+
+    private final String[][] values = new String[6][7];    // declare # of rows then declare # of columns.
 
     public Display() { // ctor
         for (int i = 0; i < 6; i++) {
@@ -20,7 +21,7 @@ public class Display {
     public void update(Player player, int row, int column) {
         String boardPiece = "X";
 
-        if(player.getID() == 1) {
+        if(player.getPlayerID() == 1) {
             boardPiece = "X";
         }
         else {
@@ -69,6 +70,4 @@ public class Display {
             System.out.print(value);
         }
     }
-
-
 }

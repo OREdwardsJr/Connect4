@@ -1,7 +1,6 @@
 package com.connect4;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,8 +11,6 @@ public class Computer extends Player {
         setDifficultyLevel(difficultyLevel);
     }
 
-    // We pass a Player object in our signature to allow the computer to
-    // monitor id which will be needed to check for connected rows
     public int takeTurn(Board board, Player player) {
         if ("easy".equalsIgnoreCase(this.getDifficultyLevel())) return easy(board);
 
@@ -40,20 +37,21 @@ public class Computer extends Player {
      *  - medium() calls findBestOption() to return the highest value move
      *  - findBestOption calls checkRow() on each row to capture the row's highest value
      *  - checkRow() returns the largest number of connected pieces
+     *
+     * For int[2] arrays the indexes represent: index 0 for column - index 1 for the count of matching connected pieces
      */
     public int medium(Board board, Player player) {
-        // index 0 is the position - index 1 is the count of matching connected pieces
-        int[] cpuBestOption;
+        int[] thisBestOption;
         int[] opponentBestOption;
 
-        cpuBestOption = findBestOption(board, player, true);
+        thisBestOption = findBestOption(board, player, true);
         opponentBestOption = findBestOption(board, player, false);
 
-        if (cpuBestOption[1] >= 2) return cpuBestOption[0]; // win game
+        if (thisBestOption[1] >= 2) return thisBestOption[0]; // win game
 
         if (opponentBestOption[1] >= 2) return opponentBestOption[0]; // try to prevent winning move from opponent
 
-        return cpuBestOption[0]; // return option with the longest connection of cpu pieces
+        return thisBestOption[0]; // return option with the longest connection of cpu pieces
     }
 
     private int[] findBestOption(Board board, Player player, boolean useId) {
@@ -86,67 +84,32 @@ public class Computer extends Player {
 
         switch (option) {
             case 0: // travel Northeast
-                r -= 1;
-                c += 1;
-                break;
+                r -= 1; c += 1; break;
             case 1: // travel Southwest
-                r += 1;
-                c -= 1;
-                break;
+                r += 1; c -= 1; break;
             case 2: // travel East
-                c += 1;
-                break;
+                        c += 1; break;
             case 3: // travel West
-                c -= 1;
-                break;
+                        c -= 1; break;
             case 4: // travel Southeast
-                r += 1;
-                c += 1;
-                break;
+                r += 1; c += 1; break;
             case 5: // travel Northwest
-                r -= 1;
-                c -= 1;
-                break;
+                r -= 1; c -= 1; break;
             case 6: // travel South
-                r += 1;
-                break;
+                r += 1;         break;
             default:
                 return 0;
         }
 
         if ((!board.validMove(r, c))                        ||
             (getBoard[r][c] == 0)                           ||
-            (useId && (player.getID() != getBoard[r][c]))   ||
-            (!useId && (player.getID() == getBoard[r][c]))  ||
+            (useId && (player.getPlayerID() != getBoard[r][c]))   ||
+            (!useId && (player.getPlayerID() == getBoard[r][c]))  ||
             (count >= 3))
             return count;
 
         return checkRow(board, option, count + 1, player, r, c, useId);
     }
-
-//    private int checkRow(Board board, int option, int count, Player player, int r, int c, boolean useId) {
-//        int[][] getBoard = board.get();
-//
-//        if (board.columnEntries()[c] < 0) return 0;
-//
-//        if ((r < 0 || r >= getBoard.length) || (c < 0 || c >= getBoard[0].length)) return count; // if out of bounds
-//
-//        if (++count == 4 || getBoard[r][c] == 0) return count; // if winning option is present or slot is empty
-//
-//        switch (option) { // there are at most 7 directions to check for winning moves
-//            case 1: // travel Northeast
-//                return checkRow(board, option, count, player, --r, ++c, useId) +
-//                        checkRow(board, option, count, player, ++r, --c, useId);
-//            case 2: // travel East
-//                return checkRow(board, option, count, player, r, ++c, useId) +
-//                        checkRow(board, option, count, player, r, --c, useId);
-//            case 3: // travel Southeast
-//                return checkRow(board, option, count, player, ++r, ++c, useId) +
-//                        checkRow(board, option, count, player, --r, --c, useId);
-//            default: // travel South
-//                return checkRow(board, option, count, player, ++r, c, useId);
-//        }
-//    }
 
     private List<Integer> swapNums(int listSize) {
         List<Integer> list = new ArrayList<>(listSize);
@@ -157,8 +120,6 @@ public class Computer extends Player {
 
         return list;
     }
-
-    // getters and setters
 
     public void setDifficultyLevel(String difficultyLevel) {
         this.difficultyLevel = difficultyLevel.toUpperCase();

@@ -65,7 +65,7 @@ class DummyController {
             // Take turn
             while (!validMove) { // probably need to throw some type of error somewhere
                 if (CPU.equalsIgnoreCase(player.getName())) {
-                    if (1 == player.getID()) choice = computer1.takeTurn(BOARD, player);
+                    if (1 == player.getPlayerID()) choice = computer1.takeTurn(BOARD, player);
                     else choice = computer2.takeTurn(BOARD, player);
                 }
                 else {

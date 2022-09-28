@@ -46,12 +46,12 @@ class DisplayTest {
     }
 
     public void updateDisplaTest(Player player, int row, int column) {
-        // this.player = player.getID();
+        // this.player = player.getPlayerID();
         // this.row = row;
         // this.column = column;
         String boardPiece = "X";
 
-        if(player.getID() ==1) {
+        if(player.getPlayerID() ==1) {
             boardPiece = "X";
         }
         else {
