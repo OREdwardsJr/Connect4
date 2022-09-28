@@ -1,5 +1,6 @@
 package com.connect4.controller;
 
+import com.connect4.Board;
 import com.connect4.Player;
 
 public class Display {
@@ -14,7 +15,7 @@ public class Display {
         setup();
     }
 
-    public void update(Player player, int row, int column) {
+    public void update(Player player, int row, int column)  {
         String boardPiece = "X";
 
         if(player.getPlayerID() == 1) {
@@ -23,6 +24,9 @@ public class Display {
         else {
             boardPiece = "O";
         }
+
+        // animate(player, row, column, boardPiece);
+
         values[row][column] = boardPiece;
     }
 
@@ -74,4 +78,17 @@ public class Display {
             System.out.print(value);
         }
     }
+
+//    private void animate(Player player, int row, int column, String boardPiece) throws InterruptedException {
+//        for (int i = 0; i < row; i++) {
+//            values[row][i] = boardPiece;
+//            try {
+//                Thread.sleep(1500);
+//            }
+//            catch (InterruptedException e) {
+//                System.out.println(e.getMessage());
+//            }
+//            values[row][column] = String.valueOf(" ");
+//        }
+//    }
 }
