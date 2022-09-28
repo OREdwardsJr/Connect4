@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="lib1">
+  <library name="lib2">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/junit-4.13.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/app-utils-1.1.jar!/" />

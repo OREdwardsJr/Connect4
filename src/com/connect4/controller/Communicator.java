@@ -149,4 +149,10 @@ public class Communicator {
         String goodBye = Files.readString(Path.of("images/goodbye.txt"));
         System.out.println(goodBye);
     }
+
+    public void welcomeToConnectFour() throws IOException {
+        String welcome = Files.readString(Path.of("images/welcome.txt"));
+        System.out.println(welcome);
+    }
+
 }
