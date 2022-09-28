@@ -7,6 +7,8 @@ import java.util.List;
 public class Computer extends Player {
     private String difficultyLevel;
 
+    public Computer() {}
+
     public Computer(String difficultyLevel) {
         setDifficultyLevel(difficultyLevel);
     }

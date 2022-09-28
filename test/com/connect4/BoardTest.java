@@ -34,7 +34,7 @@ public class BoardTest {
 
     @After
     public void after() throws Exception {
-        board.clear();
+        board.setup();
     }
 
     // validMove()
@@ -113,7 +113,7 @@ public class BoardTest {
     @Test
     public void clear_shouldResetBoard_whenCalled() {
         fillBoard();
-        board.clear();
+        board.setup();
 
         assertArrayEquals(board.get(), new Board().get());
     }
@@ -128,7 +128,7 @@ public class BoardTest {
         board.occupySlot(p1, 0);
 
         assertTrue(board.winnerDetected(p1, 0));
-        board.clear();
+        board.setup();
 
         board.occupySlot(p1, 0);
         board.occupySlot(p1, 3);
@@ -136,7 +136,7 @@ public class BoardTest {
         board.occupySlot(p1, 1);
 
         assertTrue(board.winnerDetected(p1, 1));
-        board.clear();
+        board.setup();
 
         board.occupySlot(p1, 0);
         board.occupySlot(p1, 1);
@@ -144,7 +144,7 @@ public class BoardTest {
         board.occupySlot(p1, 2);
 
         assertTrue(board.winnerDetected(p1, 2));
-        board.clear();
+        board.setup();
 
         board.occupySlot(p1, 0);
         board.occupySlot(p1, 1);
@@ -160,7 +160,7 @@ public class BoardTest {
         board.occupySlot(p1, 0);
 
         assertTrue(board.winnerDetected(p1, 0));
-        board.clear();
+        board.setup();
 
         board.occupySlot(p1, 0);
         board.occupySlot(p1, 0);
@@ -168,7 +168,7 @@ public class BoardTest {
         board.occupySlot(p1, 0);
 
         assertTrue(board.winnerDetected(p1, 0));
-        board.clear();
+        board.setup();
 
         board.occupySlot(p1, 1);
         board.occupySlot(p1, 1);
@@ -176,7 +176,7 @@ public class BoardTest {
         board.occupySlot(p1, 1);
 
         assertTrue(board.winnerDetected(p1, 1));
-        board.clear();
+        board.setup();
 
         board.occupySlot(p1, 2);
         board.occupySlot(p1, 2);
@@ -184,7 +184,7 @@ public class BoardTest {
         board.occupySlot(p1, 2);
 
         assertTrue(board.winnerDetected(p1, 2));
-        board.clear();
+        board.setup();
 
         // with blocker
         board.occupySlot(p1, 0);
@@ -195,10 +195,10 @@ public class BoardTest {
         board.occupySlot(p1, 0);
 
         assertTrue(board.winnerDetected(p1, 0));
-        board.clear();
+        board.setup();
 
         // Diagonal
-        board.clear();
+        board.setup();
         board.occupySlot(p1, 0);
 
         board.occupySlot(p2, 1);
@@ -214,7 +214,7 @@ public class BoardTest {
         board.occupySlot(p1, 3);
 
         assertTrue(board.winnerDetected(p1, 3));
-        board.clear();
+        board.setup();
 
         // Complicated diagonal for p1
         board.occupySlot(p1, 0);
@@ -242,7 +242,7 @@ public class BoardTest {
         board.occupySlot(p1, 3);
 
         assertTrue(board.winnerDetected(p1, 3));
-        board.clear();
+        board.setup();
 
         // Complicated diagonal for p2
         board.occupySlot(p2, 0);
@@ -287,7 +287,7 @@ public class BoardTest {
         assertFalse(board.winnerDetected(p1, 5));
 
         // Vertical
-        board.clear();
+        board.setup();
         board.occupySlot(p1, 0);
         board.occupySlot(p1, 0);
         board.occupySlot(p1, 0);
@@ -298,7 +298,7 @@ public class BoardTest {
         assertFalse(board.winnerDetected(p1, 3));
         assertFalse(board.winnerDetected(p1, 4));
         assertFalse(board.winnerDetected(p1, 5));
-        board.clear();
+        board.setup();
 
         // Diagonal
         board.occupySlot(p1, 0);
@@ -320,7 +320,7 @@ public class BoardTest {
         assertFalse(board.winnerDetected(p1, 3));
         assertFalse(board.winnerDetected(p1, 4));
         assertFalse(board.winnerDetected(p1, 5));
-        board.clear();
+        board.setup();
 
         // Complicated diagonal for p1
         board.occupySlot(p1, 0);
@@ -351,7 +351,7 @@ public class BoardTest {
         assertFalse(board.winnerDetected(p1, 3));
         assertFalse(board.winnerDetected(p1, 4));
         assertFalse(board.winnerDetected(p1, 5));
-        board.clear();
+        board.setup();
 
         // Complicated diagonal for p2
         board.occupySlot(p2, 0);

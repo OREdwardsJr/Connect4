@@ -104,10 +104,10 @@ public class Communicator {
         String move;
 
         while(!quitLoopTakeTurn){
-            move = prompter.prompt("Select your move [1-7]");
+            move = prompter.prompt("Select your move [1-7] (-1 to quit game)");
 
             switch (move){
-                case("1"):case("2"):case("3"):case("4"):case("5"):case("6"):case("7"):
+                case("1"):case("2"):case("3"):case("4"):case("5"):case("6"):case("7"):case("-1"):
                     columnNumber = Integer.parseInt(move);
                     quitLoopTakeTurn = true;
                     break;

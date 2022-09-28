@@ -85,7 +85,7 @@ public class Board {
         return (0 <= column && column < rowTracker.length && 0 <= row && row < get().length);
     }
 
-    public void clear() {
+    public void setup() {
         board = new int[rows][columns];
         rowTracker = new int[]{column, column, column, column, column, column, column};
     }
