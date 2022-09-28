@@ -1,5 +1,6 @@
 package com.connect4.controller;
 
+import com.apps.util.Console;
 import com.connect4.Board;
 import com.connect4.Player;
 import com.connect4.Computer;
@@ -74,9 +75,8 @@ public class Controller {
                 if (CPU.equalsIgnoreCase(player.getName())) {
                     if (1 == player.getPlayerID()) choice = computer1.takeTurn(board, player);
                     else choice = computer2.takeTurn(board, player);
-                }
-                else {
-                    System.out.print(player.getName()+"--> ");//prints out player name
+                } else {
+                    System.out.print(player.getName() + "--> ");//prints out player name
                     choice = player.takeTurn();
                 }
                 if (-2 == choice) endGame(); // terminates game
@@ -85,10 +85,10 @@ public class Controller {
             }
 
             System.out.println();
+            Console.clear();
             if (CPU.equalsIgnoreCase(player.getName())) System.out.println("Computer's choice: " + (choice + 1));
 
             // Update and print display
-            //TODO: @Hency Add the clear board method here
             display.update(player, board.columnEntries()[choice], choice);
             display.print();
 
@@ -99,6 +99,9 @@ public class Controller {
 
             startNewRound = (!winnerDetected && turns < 42);
         }
+
+        Console.clear();
+        display.print();
         communicator.announceVictory(player, winnerDetected);
     }
 
