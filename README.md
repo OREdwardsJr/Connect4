@@ -78,7 +78,7 @@
 <img src="Class Diagram 0925.png" alt="Initial Diagram">
 
 <h3 align="center">Final Diagram</h3>
-<img src="Full_Class_Diagram_UsageInCode.png" alt="UML Diagram">
+<img src="Connect4_UML.png" alt="UML Diagram">
 
 <h3 align="center">Product Screenshot</h3>
 <img align="center" src="images/Connect4_terminal.png" alt="Product Screenshot">
