@@ -3,6 +3,9 @@ package com.connect4.controller;
 import com.apps.util.Prompter;
 import com.connect4.Player;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class Communicator {
@@ -124,11 +127,24 @@ public class Communicator {
         System.out.println("Player 2 is: " + p2.getName());
     }
 
-    public void announceVictory(Player player, boolean winnerDetected) {
-        if (winnerDetected) {
-            System.out.println("Player " + player.getPlayerID() + " wins!");
-        } else {
-            System.out.println("Tie game!");
+    public void announceVictory(Player player, boolean winnerDetected) throws IOException {
+        try {
+            if (winnerDetected) {
+                if(player.getPlayerID() == 1) {
+                    String playerOneWins = Files.readString(Path.of("images/player1wins.txt"));
+                    System.out.println(playerOneWins);
+                } else {
+                    String playerTwoWins = Files.readString(Path.of("images/player2wins.txt"));
+                    System.out.println(playerTwoWins);
+                }
+                // System.out.println("Player " + player.getPlayerID() + " wins!");
+            } else {
+                    String tieGame =  Files.readString(Path.of("images/tiegame.txt"));
+                System.out.println(tieGame);
+                // System.out.println("Tie game!");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

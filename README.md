@@ -35,8 +35,6 @@
     <a href="https://github.com/OREdwardsJr/TLG/tree/main/src/com/connect4"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/OREdwardsJr/repo_name">View Demo</a>
-    ·
     <a href="https://github.com/OREdwardsJr/repo_name/issues">Report Bug</a>
     ·
     <a href="https://github.com/OREdwardsJr/repo_name/issues">Request Feature</a>
@@ -71,14 +69,37 @@
   </ol>
 </details>
 
-
+<!-- MEET THE TEAM -->
+## Meet The Contributors - Ad HOC
+  - ### Hency 
+    - [![LinkedIn][linkedin-shield]][linkedin-url-hency]
+  - ### Orlando 
+    - High-level design
+    - End game detection logic
+    - Computer logic
+    - [![LinkedIn][linkedin-shield]][linkedin-url-orlando]
+  - ### Coel  [![LinkedIn][linkedin-shield]][linkedin-url-coel]
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<h3 align="center">Initial Diagram</h3>
+<img src="Class Diagram 0925.png" alt="Initial Diagram">
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+<h3 align="center">Final Diagram</h3>
+<img src="Connect4_UML.png" alt="UML Diagram">
+
+<h3 align="center">Product Screenshot</h3>
+<img align="center" src="images/Connect4_terminal.png" alt="Product Screenshot">
+
+### Features
+- #### Initial
+   - 2 player game
+- #### Extended
+   - 1 player functionality
+- #### Wishlist
+   - Animation
+   - Scoreboard
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -86,14 +107,8 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+<img src="images/java-logo.gif" alt="Logo" width="300" height="250">
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -220,9 +235,11 @@ Project Link: [https://github.com/github_username/TLG](https://github.com/github
 [license-shield]: https://img.shields.io/github/license/OREdwardsJr/TLG.svg?style=for-the-badge
 [license-url]: https://github.com/OREdwardsJr/TLG/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[linkedin-url-hency]: https://www.linkedin.com/in/hencyp/
+[linkedin-url-orlando]: https://www.linkedin.com/in/orlando-edwards-jr/
+[linkedin-url-coel]: https://www.linkedin.com/
+[product-screenshot]: images/Connect4_terminal.png
+[Next.js]: <img src="images.java-log.gif">
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
