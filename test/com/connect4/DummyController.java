@@ -72,8 +72,6 @@ class DummyController {
                     choice = player.takeTurn();
                 }
                 validMove = BOARD.validMove(choice);
-                System.out.println(validMove);
-                System.out.println(choice);
             }
 
             // Update and print display

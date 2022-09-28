@@ -1,6 +1,7 @@
 package com.connect4;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -48,9 +49,9 @@ public class Computer extends Player {
         cpuBestOption = findBestOption(board, player, true);
         opponentBestOption = findBestOption(board, player, false);
 
-        if (cpuBestOption[1] >= 3) return cpuBestOption[0]; // win game
+        if (cpuBestOption[1] >= 2) return cpuBestOption[0]; // win game
 
-        if (opponentBestOption[1] >= 3) return opponentBestOption[0]; // try to prevent winning move from opponent
+        if (opponentBestOption[1] >= 2) return opponentBestOption[0]; // try to prevent winning move from opponent
 
         return cpuBestOption[0]; // return option with the longest connection of cpu pieces
     }
@@ -62,27 +63,26 @@ public class Computer extends Player {
 
         for (c = 0; c < board.get()[0].length; c++) {
             r = board.columnEntries()[c];
-            if (r < 0) continue;
-            for (int option = 0; option < 7; option++) {
-                currentValue = checkRow(board, option, count, player, r, c, useId) +
-                        checkRow(board, option + 1, count, player, r, c, useId);
-                if (currentValue > bestOption[1]) {
-                    bestOption[0] = option;
-                    bestOption[1] = currentValue;
-                    if (bestOption[1] >= 3) break;
+            if (board.validMove(c)) {
+                for (int option = 0; option < 7; option += 2) {
+                    currentValue = checkRow(board, option, count, player, r, c, useId) +
+                            checkRow(board, option + 1, count, player, r, c, useId);
+                    if (currentValue > bestOption[1]) {
+                        bestOption[0] = c;
+                        bestOption[1] = currentValue;
+                    }
                 }
+                if (bestOption[1] >= 3) break;
             }
         }
-        bestOption[0] = (bestOption[1] >= 1) ? bestOption[0] : easy(board);
+        bestOption[0] = (bestOption[1] > 0) ? bestOption[0] : easy(board);
 
         return bestOption;
     }
 
     private int checkRow(Board board, int option, int count, Player player, int r, int c, boolean useId) {
+        // checks the surrounding pieces of getBoard[r][c] to find contiguous matches
         int[][] getBoard = board.get();
-
-        /* still locks if the computer chooses a column that's full*/
-        if (board.columnEntries()[count] < 0) return 0;
 
         switch (option) {
             case 0: // travel Northeast
@@ -114,41 +114,37 @@ public class Computer extends Player {
                 return 0;
         }
 
-        if ((r < 0 || r >= getBoard.length)                 ||
-            (c < 0 || c >= getBoard[0].length)              ||
-            (useId && player.getID() != getBoard[r][c])     ||
-            (!useId && getBoard[r][c] == player.getID())    ||
+        if ((!board.validMove(r, c))                        ||
+            (getBoard[r][c] == 0)                           ||
+            (useId && (player.getID() != getBoard[r][c]))   ||
+            (!useId && (player.getID() == getBoard[r][c]))  ||
             (count >= 3))
             return count;
 
         return checkRow(board, option, count + 1, player, r, c, useId);
     }
 
-//    private int checkRow(Board board, int option, Player player, int r, int c, int count, boolean useId) {
+//    private int checkRow(Board board, int option, int count, Player player, int r, int c, boolean useId) {
 //        int[][] getBoard = board.get();
 //
-//        if ((r < 0 || r >= getBoard.length) || (c < 0 || c >= getBoard[0].length)) return count; // if out of bounds
+//        if (board.columnEntries()[c] < 0) return 0;
 //
-//        if (board.get()[r][c] != 0) {
-//            if ((useId && player.getID() != getBoard[r][c]) || (!useId && getBoard[r][c] == player.getID())) {  // if board holds opponent's piece
-//                return count;
-//            }
-//        }
+//        if ((r < 0 || r >= getBoard.length) || (c < 0 || c >= getBoard[0].length)) return count; // if out of bounds
 //
 //        if (++count == 4 || getBoard[r][c] == 0) return count; // if winning option is present or slot is empty
 //
 //        switch (option) { // there are at most 7 directions to check for winning moves
 //            case 1: // travel Northeast
-//                return checkRow(board, option, player, --r, ++c, count, useId) +
-//                        checkRow(board, option, player, ++r, --c, count, useId);
+//                return checkRow(board, option, count, player, --r, ++c, useId) +
+//                        checkRow(board, option, count, player, ++r, --c, useId);
 //            case 2: // travel East
-//                return checkRow(board, option, player, r, ++c, count, useId) +
-//                        checkRow(board, option, player, r, --c, count, useId);
+//                return checkRow(board, option, count, player, r, ++c, useId) +
+//                        checkRow(board, option, count, player, r, --c, useId);
 //            case 3: // travel Southeast
-//                return checkRow(board, option, player, ++r, ++c, count, useId) +
-//                        checkRow(board, option, player, --r, --c, count, useId);
+//                return checkRow(board, option, count, player, ++r, ++c, useId) +
+//                        checkRow(board, option, count, player, --r, --c, useId);
 //            default: // travel South
-//                return checkRow(board, option, player, ++r, c, count, useId);
+//                return checkRow(board, option, count, player, ++r, c, useId);
 //        }
 //    }
 

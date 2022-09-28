@@ -26,8 +26,8 @@ public class CompLogicTest {
         assertEquals(CPU_MEDIUM.getDifficultyLevel(), "MEDIUM");
     }
 
-    @Test
-    public void name() {
+    @Test(expected = Test.None.class /* no exception expected */)
+    public void playGame_shouldNotThrowError_whenComputerPlaysItself() {
         DummyController.playGame();
     }
 }
