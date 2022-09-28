@@ -42,6 +42,12 @@ public class Controller {
     }
 
     private void setupGame() {
+        try {
+            communicator.welcomeToConnectFour();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         board.setup();
         display.setup();
         display.print();
