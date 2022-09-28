@@ -11,11 +11,7 @@ public class Display {
     private final String[][] values = new String[6][7];    // declare # of rows then declare # of columns.
 
     public Display() { // ctor
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
-                values[i][j] = String.valueOf(" "); // storing characters. Whitespace.
-            }
-        }
+        setup();
     }
 
     public void update(Player player, int row, int column) {
@@ -52,6 +48,14 @@ public class Display {
                 System.out.print("+---");
             }
             System.out.println("+");    // for ending line print of dashes
+        }
+    }
+
+    public void setup() {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                values[i][j] = String.valueOf(" "); // storing characters. Whitespace.
+            }
         }
     }
 

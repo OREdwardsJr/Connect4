@@ -31,7 +31,7 @@ class DummyController {
     }
 
     public static void setupGame() {
-        BOARD.clear();
+        BOARD.setup();
 
         player1 = new Player("CPU", 1);
         player2 = new Player("CPU", 2);

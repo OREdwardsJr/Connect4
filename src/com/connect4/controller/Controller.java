@@ -6,16 +6,16 @@ import com.connect4.Computer;
 
 public class Controller {
 
-    private final String CPU = "CPU";
-    private final Communicator COMMUNICATOR = Communicator.newInstance();
-    private final Board BOARD = new Board();
+    private final static String CPU = "CPU";
 
-    private Player player1;
-    private Player player2;
-    private Computer computer1;
-    private Computer computer2;
-    private Display display;
+    private final Communicator communicator = Communicator.newInstance();
+    private final Board board = new Board();
+    private final Computer computer1 = new Computer();
+    private final Computer computer2 = new Computer();
+    private final Display display = new Display();
 
+    private Player player1 = new Player();
+    private Player player2 = new Player();
     private boolean newGame = true;
 
     public void go() {
@@ -24,24 +24,26 @@ public class Controller {
 
             playGame();
 
-            newGame = COMMUNICATOR.playNewGame();
+            newGame = communicator.playNewGame();
         }
-        COMMUNICATOR.sayGoodBye();
+        communicator.sayGoodBye();
     }
 
     private void setupGame() {
-        BOARD.clear();
+        board.setup();
+        display.setup();
+        display.print();
 
         // Create players
         // Additional properties can be set in the future (EG: color or slot symbol)
-        player1 = new Player(COMMUNICATOR.newPlayerName(), 1);
+        player1 = new Player(communicator.newPlayerName(), 1);
         if (CPU.equalsIgnoreCase(player1.getName())) {
-            computer1 = new Computer(COMMUNICATOR.selectDifficulty());
+            computer1.setDifficultyLevel(communicator.selectDifficulty());
         }
 
-        player2 = new Player(COMMUNICATOR.newPlayerName(), 2);
+        player2 = new Player(communicator.newPlayerName(), 2);
         if (CPU.equalsIgnoreCase(player2.getName())) {
-            computer2 = new Computer(COMMUNICATOR.selectDifficulty());
+            computer2.setDifficultyLevel(communicator.selectDifficulty());
         }
 
         // Swap names if value of equation is an odd number
@@ -51,7 +53,7 @@ public class Controller {
             player1.setName(player2.getName());
             player2.setName(temp);
         }
-        COMMUNICATOR.announcePlayers(player1, player2);
+        communicator.announcePlayers(player1, player2);
     }
 
     private void playGame() {
@@ -70,26 +72,34 @@ public class Controller {
             // Take turn
             while (!validMove) { // probably need to throw some type of error somewhere
                 if (CPU.equalsIgnoreCase(player.getName())) {
-                    if (1 == player.getPlayerID()) choice = computer1.takeTurn(BOARD, player);
-                    else choice = computer2.takeTurn(BOARD, player);
+                    System.out.println(player.getPlayerID());
+                    if (1 == player.getPlayerID()) choice = computer1.takeTurn(board, player);
+                    else choice = computer2.takeTurn(board, player);
                 }
                 else {
                     choice = player.takeTurn();
                 }
-                validMove = BOARD.validMove(choice);
+                if (-2 == choice) endGame(); // terminates game
+
+                validMove = board.validMove(choice);
             }
 
             // Update and print display
-            display.update(player, BOARD.columnEntries()[choice], choice);
+            display.update(player, board.columnEntries()[choice], choice);
             display.print();
 
             // Occupy slot on board
-            BOARD.occupySlot(player, choice);
+            board.occupySlot(player, choice);
 
-            winnerDetected = BOARD.winnerDetected(player, choice);
+            winnerDetected = board.winnerDetected(player, choice);
 
             startNewRound = (!winnerDetected && turns < 42);
         }
-        COMMUNICATOR.announceVictory(player, winnerDetected);
+        communicator.announceVictory(player, winnerDetected);
+    }
+
+    private void endGame() {
+        System.out.println("Goodbye!");
+        System.exit(0);
     }
 }
