@@ -3,6 +3,8 @@ package com.connect4;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 public class CompLogicTest {
@@ -27,7 +29,7 @@ public class CompLogicTest {
     }
 
     @Test
-    public void playGame_shouldNotThrowError_whenComputerPlaysItself() {
+    public void playGame_shouldNotThrowError_whenComputerPlaysItself() throws IOException {
         DummyController.playGame();
     }
 }

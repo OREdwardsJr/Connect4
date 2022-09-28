@@ -5,6 +5,8 @@ import com.connect4.Board;
 import com.connect4.Player;
 import com.connect4.Computer;
 
+import java.io.IOException;
+
 public class Controller {
 
     private final static String CPU = "CPU";
@@ -23,7 +25,11 @@ public class Controller {
         while (newGame) { // Start new game
             setupGame();
 
-            playGame();
+            try {
+                playGame();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             newGame = communicator.playNewGame();
         }
@@ -57,7 +63,7 @@ public class Controller {
         communicator.announcePlayers(player1, player2);
     }
 
-    private void playGame() {
+    private void playGame() throws IOException {
         boolean validMove;
         int choice = 0;
         int turns = 0;

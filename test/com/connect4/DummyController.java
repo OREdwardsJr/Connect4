@@ -3,6 +3,8 @@ package com.connect4;
 import com.connect4.controller.Communicator;
 import com.connect4.controller.Display;
 
+import java.io.IOException;
+
 // bogus comment :)
 
 class DummyController {
@@ -23,7 +25,11 @@ class DummyController {
         while (newGame) { // Start new game
             setupGame();
 
-            playGame();
+            try {
+                playGame();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             newGame = COMMUNICATOR.playNewGame();
         }
@@ -49,7 +55,7 @@ class DummyController {
         COMMUNICATOR.announcePlayers(player1, player2);
     }
 
-    public static void playGame() {
+    public static void playGame() throws IOException {
         boolean validMove;
         int choice = 0;
         int turns = 0;
