@@ -114,7 +114,6 @@ public class Controller {
         Console.clear();
         display.print();
         communicator.announceVictory(player, winnerDetected);
-
     }
 
     private void endGame() {
@@ -123,7 +122,6 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // System.out.println("Goodbye!");
         System.exit(0);
     }
 }
