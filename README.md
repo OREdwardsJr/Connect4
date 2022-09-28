@@ -74,8 +74,23 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<h3 align="center">Initial Diagram</h3>
+<img src="Class Diagram 0925.png" alt="Initial Diagram">
 
+<h3 align="center">Final Diagram</h3>
+<img src="Connect4_UML.png" alt="UML Diagram">
+
+<h3 align="center">Product Screenshot</h3>
+<img align="center" src="images/Connect4_terminal.png" alt="Product Screenshot">
+
+### Features
+- #### Initial
+   - 2 player game
+- #### Extended
+   - 1 player functionality
+- #### Wishlist
+   - Animation
+   - Scoreboard
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -212,7 +227,7 @@ Project Link: [https://github.com/github_username/TLG](https://github.com/github
 [license-url]: https://github.com/OREdwardsJr/TLG/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/Connect4_terminal.png
 [Next.js]: <img src="images.java-log.gif">
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
