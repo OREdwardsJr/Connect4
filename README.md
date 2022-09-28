@@ -73,10 +73,24 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+
+<h3 align="center">Initial Diagram</h3>
+<img src="Class Diagram 0925.png" alt="Initial Diagram">
+
+<h3 align="center">Final Diagram</h3>
 <img src="Full_Class_Diagram_UsageInCode.png" alt="UML Diagram">
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<h3 align="center">Product Screenshot</h3>
+<img align="center" src="images/Connect4_terminal.png" alt="Product Screenshot">
 
+### Features
+- #### Initial
+   - 2 player game
+- #### Extended
+   - 1 player functionality
+- #### Wishlist
+   - Animation
+   - Scoreboard
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
