@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/hp/Documents/StudentWork/MiniProject/src</OriginalElement>
+  <nodes>
+    <node x="-943.4696403504142" y="700.3999745695273">com.connect4.Computer</node>
+    <node x="-537.0906968333874" y="149.4297537039459">com.connect4.controller.Display</node>
+    <node x="-963.7744481984074" y="224.0631671654844">com.connect4.controller.Communicator</node>
+    <node x="-314.84493282999597" y="427.35430149260435">com.connect4.Board</node>
+    <node x="-943.4696403504142" y="495.3567053387583">com.connect4.Player</node>
+    <node x="-1261.7610841788123" y="-44.887498529685615">com.connect4.client.Connect4</node>
+    <node x="-963.7744481984074" y="-44.887498529685615">com.connect4.controller.Controller</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.connect4.controller.Controller" target="com.connect4.Board" relationship="DEPENDENCY">
+      <point x="79.50044819840741" y="-14.999501470314385" />
+      <point x="-169.22596153846163" y="-0.38700000000000045" />
+      <point x="-169.22596153846163" y="175.77644230769232" />
+      <point x="-169.22596153846166" y="175.77644230769232" />
+      <point x="-9.881028708465692" y="-101.28098418491197" />
+    </edge>
+    <edge source="com.connect4.Computer" target="com.connect4.Board" relationship="DEPENDENCY">
+      <point x="-3.5964958578915684E-4" y="-92.99997456952735" />
+      <point x="-759.97" y="667.0" />
+      <point x="-159.3452307692307" y="667.0" />
+      <point x="-2.979392347484122E-4" y="103.49969850739569" />
+    </edge>
+    <edge source="com.connect4.client.Connect4" target="com.connect4.controller.Controller" relationship="DEPENDENCY">
+      <point x="83.0" y="-0.0" />
+      <point x="-79.5" y="-33.0" />
+    </edge>
+    <edge source="com.connect4.controller.Controller" target="com.connect4.Player" relationship="DEPENDENCY">
+      <point x="79.50044819840741" y="4.985296856148125E-4" />
+      <point x="-597.0" y="14.613" />
+      <point x="-597.0" y="463.0" />
+      <point x="-868.97" y="463.0" />
+      <point x="-3.5964958578915684E-4" y="-59.99970533875825" />
+    </edge>
+    <edge source="com.connect4.Board" target="com.connect4.Player" relationship="DEPENDENCY">
+      <point x="-155.50029793923474" y="-3.014926043078958E-4" />
+      <point x="-620.0685096153846" y="530.854" />
+      <point x="-620.0685096153846" y="530.8543014926043" />
+      <point x="-868.97" y="530.8543014926043" />
+      <point x="-3.5964958578915684E-4" y="-59.99970533875825" />
+    </edge>
+    <edge source="com.connect4.Computer" target="com.connect4.Player" relationship="GENERALIZATION">
+      <point x="-120.81356736916729" y="-93.0" />
+      <point x="-880.7832077195815" y="615.3567053387583" />
+      <point x="0.0" y="60.0" />
+    </edge>
+    <edge source="com.connect4.controller.Display" target="com.connect4.Player" relationship="DEPENDENCY">
+      <point x="-3.0316661263896094E-4" y="59.500246296054115" />
+      <point x="-430.091" y="463.0" />
+      <point x="-868.97" y="463.0" />
+      <point x="-3.5964958578915684E-4" y="-59.99970533875825" />
+    </edge>
+    <edge source="com.connect4.Player" target="com.connect4.controller.Communicator" relationship="DEPENDENCY">
+      <point x="-67.00035964958579" y="-59.99970533875825" />
+      <point x="-935.97" y="463.0" />
+      <point x="-939.0" y="463.0" />
+      <point x="-117.22555180159259" y="103.49983283451559" />
+    </edge>
+    <edge source="com.connect4.controller.Communicator" target="com.connect4.Player" relationship="DEPENDENCY">
+      <point x="4.4819840741183725E-4" y="103.49983283451559" />
+      <point x="-821.774" y="463.0" />
+      <point x="-868.97" y="463.0" />
+      <point x="-3.5964958578915684E-4" y="-59.99970533875825" />
+    </edge>
+    <edge source="com.connect4.controller.Controller" target="com.connect4.Computer" relationship="DEPENDENCY">
+      <point x="-79.5" y="11.0" />
+      <point x="-1103.2610841788123" y="25.612501470314385" />
+      <point x="-1103.2610841788123" y="793.3999745695273" />
+      <point x="-183.5" y="-0.0" />
+    </edge>
+    <edge source="com.connect4.controller.Controller" target="com.connect4.controller.Communicator" relationship="DEPENDENCY">
+      <point x="-79.49955180159259" y="-13.999501470314385" />
+      <point x="-981.274" y="0.6129999999999995" />
+      <point x="-981.274" y="463.0" />
+      <point x="-939.0" y="463.0" />
+      <point x="-117.22555180159259" y="103.49983283451559" />
+    </edge>
+    <edge source="com.connect4.controller.Controller" target="com.connect4.controller.Display" relationship="DEPENDENCY">
+      <point x="-0.0" y="59.5" />
+      <point x="-884.2744481984074" y="206.5631671654844" />
+      <point x="-107.0" y="-2.3665865384614904" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.7369353410097431" showDependencies="true" x="-261.5" y="444.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
