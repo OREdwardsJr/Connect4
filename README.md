@@ -73,6 +73,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+<img src="Full_Class_Diagram_UsageInCode.png" alt="UML Diagram">
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
@@ -212,7 +213,7 @@ Project Link: [https://github.com/github_username/TLG](https://github.com/github
 [license-url]: https://github.com/OREdwardsJr/TLG/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/Connect4_terminal.png
 [Next.js]: <img src="images.java-log.gif">
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
