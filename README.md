@@ -69,7 +69,16 @@
   </ol>
 </details>
 
-
+<!-- MEET THE TEAM -->
+## Meet The Contributors - Ad HOC
+  - ### Hency 
+    - [![LinkedIn][linkedin-shield]][linkedin-url-hency]
+  - ### Orlando 
+    - High-level design
+    - End game detection logic
+    - Computer logic
+    - [![LinkedIn][linkedin-shield]][linkedin-url-orlando]
+  - ### Coel  [![LinkedIn][linkedin-shield]][linkedin-url-coel]
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -226,7 +235,9 @@ Project Link: [https://github.com/github_username/TLG](https://github.com/github
 [license-shield]: https://img.shields.io/github/license/OREdwardsJr/TLG.svg?style=for-the-badge
 [license-url]: https://github.com/OREdwardsJr/TLG/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-url-hency]: https://www.linkedin.com/in/hencyp/
+[linkedin-url-orlando]: https://www.linkedin.com/in/orlando-edwards-jr/
+[linkedin-url-coel]: https://www.linkedin.com/
 [product-screenshot]: images/Connect4_terminal.png
 [Next.js]: <img src="images.java-log.gif">
 [Next-url]: https://nextjs.org/
