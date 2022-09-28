@@ -33,7 +33,12 @@ public class Controller {
 
             newGame = communicator.playNewGame();
         }
-        communicator.sayGoodBye();
+
+        try {
+            communicator.sayGoodBye();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setupGame() {
@@ -113,7 +118,12 @@ public class Controller {
     }
 
     private void endGame() {
-        System.out.println("Goodbye!");
+        try {
+            communicator.sayGoodBye();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // System.out.println("Goodbye!");
         System.exit(0);
     }
 }

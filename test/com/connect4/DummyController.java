@@ -21,7 +21,7 @@ class DummyController {
 
     private static boolean newGame = true;
 
-    public static void run() {
+    public static void run() throws IOException {
         while (newGame) { // Start new game
             setupGame();
 
