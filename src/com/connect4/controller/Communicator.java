@@ -61,7 +61,7 @@ public class Communicator {
                     quitNewPlayerName = true;
                     break;
                 case ("cpu"):
-                    System.out.println("Invalid entry, for CPU player please press return.");
+                    System.out.println("Invalid entry, for Computer / CPU player please press return.");
                     System.out.println();
                     break;
                 case ("computer"):
