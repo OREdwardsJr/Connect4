@@ -9,16 +9,16 @@ import java.io.IOException;
 
 public class Controller {
 
-    private final static String CPU = "CPU";
+    private final static String CPU = "Computer";
 
     private final Communicator communicator = Communicator.newInstance();
     private final Board board = new Board();
     private final Computer computer1 = new Computer();
     private final Computer computer2 = new Computer();
     private final Display display = new Display();
+    private final Player player1 = new Player("Computer", 1);
+    private final Player player2 = new Player("Computer", 2);
 
-    private Player player1 = new Player();
-    private Player player2 = new Player();
     private boolean newGame = true;
 
     public void go() {
@@ -30,10 +30,8 @@ public class Controller {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             newGame = communicator.playNewGame();
         }
-
         try {
             communicator.sayGoodBye();
         } catch (IOException e) {
@@ -42,39 +40,35 @@ public class Controller {
     }
 
     private void setupGame() {
+        String mode;
+
         try {
             communicator.welcomeToConnectFour();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        System.out.println();
-        System.out.println("You will be asked to enter a name for each player.");
-        System.out.println("If you submit an empty entry then you are selecting a computer player.");
-        System.out.println("If you select a computer player then you will be asked to select a difficulty level.");
-        System.out.println("A computer opponent may be selected as the " +
-                "first player or the second player.");
-        System.out.println();
-        System.out.println("You can play 2 player, 1 player, or watch the computer play itself.");
-        System.out.println();
-        System.out.println();
+        mode = communicator.chooseMode();
 
+        if ("2".equals(mode)) {
+            player1.setName(communicator.newPlayerName());
+            player2.setName(communicator.newPlayerName());
+        }
+        else if ("1".equals(mode)) {
+            player1.setName(communicator.newPlayerName());
+            player2.setName("Computer");
+            computer2.setDifficultyLevel(communicator.selectDifficulty());
+        }
+        else {
+            player1.setName("Computer");
+            player2.setName("Computer");
+            computer1.setDifficultyLevel(communicator.selectDifficulty());
+            computer2.setDifficultyLevel(communicator.selectDifficulty());
+        }
 
         board.setup();
         display.setup();
         display.print();
-
-        // Create players
-        // Additional properties can be set in the future (EG: color or slot symbol)
-        player1 = new Player(communicator.newPlayerName(), 1);
-        if (CPU.equalsIgnoreCase(player1.getName())) {
-            computer1.setDifficultyLevel(communicator.selectDifficulty());
-        }
-
-        player2 = new Player(communicator.newPlayerName(), 2);
-        if (CPU.equalsIgnoreCase(player2.getName())) {
-            computer2.setDifficultyLevel(communicator.selectDifficulty());
-        }
 
         // Swap names if value of equation is an odd number
         if ((int) (Math.random() * 100) % 2 != 0) {
@@ -117,6 +111,7 @@ public class Controller {
 
             System.out.println();
             Console.clear();
+
             if (CPU.equalsIgnoreCase(player.getName())){
                 System.out.println("Computer's choice: " + (choice + 1));
                 System.out.println();
@@ -133,7 +128,6 @@ public class Controller {
 
             startNewRound = (!winnerDetected && turns < 42);
         }
-
         Console.clear();
         display.print();
         communicator.announceVictory(player, winnerDetected);

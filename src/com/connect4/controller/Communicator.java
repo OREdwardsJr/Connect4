@@ -129,6 +129,23 @@ public class Communicator {
         return columnNumber;
     }
 
+    public String chooseMode() {
+        System.out.println("Select your mode:");
+        System.out.println("--Enter 2 for 2 player mode.");
+        System.out.println("--Enter 1 for 1 player mode.");
+        System.out.println("--Enter 0 for demo mode (computer plays against computer");
+        System.out.println();
+        String mode = prompter.prompt("Enter your selection");
+
+        switch (mode) {
+            case("2"): case("1"): case("0"):
+                return mode;
+            default:
+                System.out.println(mode + " is an invalid entry. Try again.");
+                return chooseMode();
+        }
+    }
+
     public void announcePlayers(Player p1, Player p2) {
         System.out.println();
         System.out.println("Player 1 is: " + p1.getName());
