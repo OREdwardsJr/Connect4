@@ -48,6 +48,18 @@ public class Controller {
             e.printStackTrace();
         }
 
+        System.out.println();
+        System.out.println("You will be asked to enter a name for each player.");
+        System.out.println("If you submit an empty entry then you are selecting a computer player.");
+        System.out.println("If you select a computer player then you will be asked to select a difficulty level.");
+        System.out.println("A computer opponent may be selected as the " +
+                "first player or the second player.");
+        System.out.println();
+        System.out.println("You can play 2 player, 1 player, or watch the computer play itself.");
+        System.out.println();
+        System.out.println();
+
+
         board.setup();
         display.setup();
         display.print();
