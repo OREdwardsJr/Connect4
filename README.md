@@ -126,6 +126,12 @@
 <h3 align="center">Product Screenshot</h3>
 <img align="center" src="images/Connect4_terminal.png" alt="Product Screenshot">
 
+<h3 align="center">Board Tracking Logic</h3>
+<img align="center" src="images/Board Diagram.png" alt="Board Diagram">
+<img align="center" src="images/rowTracker diagram.png" alt="Row Tracker Diagram">
+<img align="center" src="images/check_row_diagram.png" alt="Board checkRow">
+
+
 ### Features
 - #### Initial
    - 2 player game
