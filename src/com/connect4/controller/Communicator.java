@@ -54,7 +54,7 @@ public class Communicator {
         String playerName = "";
 
         while (!quitNewPlayerName) {
-            playerName = prompter.prompt("Please enter Player name (press return to accept Computer as Player): ");
+            playerName = prompter.prompt("Please enter Player name: ");
 
             switch (playerName.toLowerCase()) {
                 case (""):
@@ -63,15 +63,12 @@ public class Communicator {
                     quitNewPlayerName = true;
                     break;
                 case ("cpu"):
-                    System.out.println("Invalid entry, for Computer / CPU player please press return.");
-                    System.out.println();
-                    break;
                 case ("computer"):
-                    System.out.println("Invalid entry, for Computer/CPU player please press return.");
+                    System.out.println("Invalid entry, Human player cannot be Computer.");
                     System.out.println();
                     break;
                 case("c p u"):case("cp u"):case("c pu"):
-                    System.out.println("Invalid entry... but funny, I will allow it.\nHowever this is NOT a Computer/CPU player.\nYou are now player: The-Comedian");
+                    System.out.println("Invalid entry... but funny, I will allow it.\nHowever this is NOT a Computer player.\nYou are now player: The-Comedian");
                     playerName=("The-Comedian");
                     System.out.println();
                     quitNewPlayerName = true;
