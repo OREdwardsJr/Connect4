@@ -23,7 +23,7 @@
   </a>
   
 
-<h3 align="center">Connect 4</h3>
+<h1 align="center">Connect 4</h3>
 
   <p align="center">
     This is a Java based application based off of the famous game Connect 4. Players take turns choosing open slots on the board until a player
@@ -140,6 +140,7 @@
 - #### Wishlist
    - Animation
    - Scoreboard
+   - 3rd difficultly level
    
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -189,31 +190,6 @@ This is an example of how to list things you need to use the software and how to
 
 
 
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/github_username/TLG/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTRIBUTING -->
 ## Contributing
 
@@ -232,21 +208,12 @@ Don't forget to give the project a star! Thanks again!
 
 
 
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-Project Link: [https://github.com/github_username/TLG](https://github.com/github_username/TLG)
+* Hency - [LinkedIn](https://www.linkedin.com/in/hencyp/)
+* Orlando - [LinkedIn](https://www.linkedin.com/in/orlando-edwards-jr/)
+* Coel - 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -255,9 +222,8 @@ Project Link: [https://github.com/github_username/TLG](https://github.com/github
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* Thank you to TLG and Jay for creating and delivering an effective Java learning experience.
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
