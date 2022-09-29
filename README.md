@@ -13,10 +13,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
+[![MIT License][license-shield]][license-url]  
 
 <!-- PROJECT LOGO -->
 <br />
@@ -88,15 +85,14 @@
       - [LinkedIn](https://www.linkedin.com/in/hencyp/)
   - ### Orlando 
     - Contributions
-      - High-level design
+      - API design
       - End game detection logic
       - Computer logic
       - Initial diagram
       - README document
     - Setbacks/Lessons Learned
       - (Setback) Frustration extended completion of computer logic by a day
-        - Better naming conventions may have helped me find this bug sooner // Bug was located in Computer.findBestOption() line 71
-      - (Setback) Overutilization of Static methods 
+        - Better naming conventions may have helped me find this bug sooner
       - (Lesson Learned) Stronger in OOP but still need some work
       - (Lesson Learned) Effective collaboration makes solving technical problems much smoother
     - Contact
