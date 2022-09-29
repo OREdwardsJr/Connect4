@@ -48,13 +48,14 @@ public class Communicator {
         return level;
     }
 
-    public String newPlayerName() {//dummy commit
+    public String newPlayerName() {
         Prompter prompter = new Prompter(new Scanner(System.in));
         boolean quitNewPlayerName = false;
         String playerName = "";
 
         while (!quitNewPlayerName) {
             playerName = prompter.prompt("Please enter Player name: ");
+            System.out.println();
 
             switch (playerName.toLowerCase()) {
                 case (""):
