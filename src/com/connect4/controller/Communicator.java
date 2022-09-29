@@ -1,5 +1,6 @@
 package com.connect4.controller;
 
+import com.apps.util.Console;
 import com.apps.util.Prompter;
 import com.connect4.Player;
 
@@ -89,6 +90,7 @@ public class Communicator {
                 case ("y"):
                     result = true;
                     quitLoopNewGame=true;
+                    Console.clear();
                     break;
                 case ("n"):
                     quitLoopNewGame = true;
