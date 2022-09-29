@@ -27,7 +27,7 @@ public class Communicator {
 
         boolean quit = false;
         while (!quit) {
-            String selectLevel = prompter.prompt("Select number for difficulty level: \n1-Easy\n2-Medium\n");
+            String selectLevel = prompter.prompt("Select number for difficulty level [1-Easy, n2-Medium: ");
 
             switch (selectLevel) {
                 case ("1"):
@@ -57,7 +57,7 @@ public class Communicator {
 
             switch (playerName.toLowerCase()) {
                 case (""):
-                    playerName = "CPU";
+                    playerName = "Nameless";
                     quitNewPlayerName = true;
                     break;
                 case ("cpu"):
