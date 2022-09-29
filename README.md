@@ -72,14 +72,45 @@
 <!-- MEET THE TEAM -->
 ## Meet The Contributors - Ad HOC - and their contributions
   - ### Hency 
-    - [![LinkedIn][linkedin-shield]][linkedin-url-hency]
+    - Contributions
+      - User input interface and validation
+      - UI Connections
+      - Final UML Diagram
+      - Software package/deployment
+      - Console setup and testing (Windows and MacOS)
+    - Setbacks/Lessons Learned
+      - Mistakenly broke local project
+      - Failing tests due to overuse of static methods (be weary of Static)
+      - Do not attach attach yourself to code, you will end up either rewriting it or tossing it to the side
+      - Communications of ideas is key, questions are a must while implementing code
+      - Clarify which data structures being used, if any
+    - Contact
+      - [LinkedIn](https://www.linkedin.com/in/hencyp/)
   - ### Orlando 
-    - High-level design
-    - End game detection logic
-    - Computer logic
-    - ReadMe
-    - [![LinkedIn][linkedin-shield]][linkedin-url-orlando]
-  - ### Coel  [![LinkedIn][linkedin-shield]][linkedin-url-coel]
+    - Contributions
+      - High-level design
+      - End game detection logic
+      - Computer logic
+      - Initial diagram
+      - README document
+    - Setbacks/Lessons Learned
+      - (Setback) Frustration extended completion of computer logic by a day
+        - Better naming conventions may have helped me find this bug sooner // Bug was located in Computer.findBestOption() line 71
+      - (Setback) Overutilization of Static methods 
+      - (Lesson Learned) Stronger in OOP but still need some work
+      - (Lesson Learned) Effective collaboration makes solving technical problems much smoother
+    - Contact
+      - [LinkedIn](https://www.linkedin.com/in/orlando-edwards-jr/)
+  - ### Coel
+    - Contributions
+      - User interface 
+      - ASCII art
+      - Board design
+      - Testing
+    - Setbacks/Lessons 
+      - Communication is important
+      - There was a learning curve with operating IntelliJ and Git
+      - The project is like a puzzle or dominoes where 1 move can impact another area
 
 <!-- Agenda -->
 ## Agenda
@@ -107,6 +138,7 @@
 - #### Wishlist
    - Animation
    - Scoreboard
+   
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
