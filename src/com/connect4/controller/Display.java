@@ -11,7 +11,7 @@ public class Display {
 
     private final String[][] values = new String[6][7];    // declare # of rows then declare # of columns.
 
-    public Display() { // ctor
+    public Display() {  // ctor
         setup();
     }
 
@@ -24,16 +24,10 @@ public class Display {
         else {
             boardPiece = "O";
         }
-
         values[row][column] = boardPiece;
     }
 
     public void print() {
-        for (int i = 0; i < 7; i++) {
-            System.out.print("  " + (i+1) + " ");
-        }
-        System.out.println();
-
         for (int j = 0; j <7; j++) {
             System.out.print("+---");   // used to close in the top.
         }
@@ -51,6 +45,12 @@ public class Display {
             }
             System.out.println("+");    // for ending line print of dashes
         }
+
+        for (int i = 0; i < 7; i++) {
+            System.out.print("  " + (i+1) + " ");   // for numbers 1-7
+        }
+        System.out.println();
+        System.out.println();
     }
 
     public void setup() {
