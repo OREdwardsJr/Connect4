@@ -84,7 +84,6 @@ public class Controller {
         Player player = player1;
 
         while (startNewRound) {
-            Console.clear();
             validMove = false;
 
             player = (turns++ % 2 == 0) ? player1 : player2;
