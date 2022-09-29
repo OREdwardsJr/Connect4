@@ -96,7 +96,10 @@ public class Controller {
 
             // Take turn
             while (!validMove) { // probably need to throw some type of error somewhere
-                Console.pause(1000);
+                if(player.getName().equals(CPU)){
+                    Console.pause(1000);
+                }
+
                 if (CPU.equalsIgnoreCase(player.getName())) {
                     if (1 == player.getPlayerID()) choice = computer1.takeTurn(board, player);
                     else choice = computer2.takeTurn(board, player);

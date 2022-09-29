@@ -27,7 +27,8 @@ public class Communicator {
 
         boolean quit = false;
         while (!quit) {
-            String selectLevel = prompter.prompt("Select number for difficulty level [1-Easy, n2-Medium: ");
+            String selectLevel = prompter.prompt("Select number for difficulty level for Computer [1-Easy, 2-Medium]: ");
+            System.out.println();
 
             switch (selectLevel) {
                 case ("1"):
@@ -58,6 +59,7 @@ public class Communicator {
             switch (playerName.toLowerCase()) {
                 case (""):
                     playerName = "Nameless";
+                    System.out.println();
                     quitNewPlayerName = true;
                     break;
                 case ("cpu"):
@@ -133,9 +135,10 @@ public class Communicator {
         System.out.println("Select your mode:");
         System.out.println("--Enter 2 for 2 player mode.");
         System.out.println("--Enter 1 for 1 player mode.");
-        System.out.println("--Enter 0 for demo mode (computer plays against computer");
+        System.out.println("--Enter 0 for demo mode (computer plays against computer)");
         System.out.println();
-        String mode = prompter.prompt("Enter your selection");
+        String mode = prompter.prompt("Enter your selection: ");
+        System.out.println();
 
         switch (mode) {
             case("2"): case("1"): case("0"):
@@ -176,6 +179,7 @@ public class Communicator {
     }
 
     public void sayGoodBye() throws IOException {
+        System.out.println();
         String goodBye = Files.readString(Path.of("images/goodbye.txt"));
         System.out.println(goodBye);
     }
