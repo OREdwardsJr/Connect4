@@ -53,7 +53,7 @@ public class Communicator {
         String playerName = "";
 
         while (!quitNewPlayerName) {
-            playerName = prompter.prompt("Please enter name (press return for CPU): ");
+            playerName = prompter.prompt("Please enter Player name (press return to accept Computer as Player): ");
 
             switch (playerName.toLowerCase()) {
                 case (""):
