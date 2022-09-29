@@ -213,7 +213,6 @@ Don't forget to give the project a star! Thanks again!
 
 * Hency - [LinkedIn](https://www.linkedin.com/in/hencyp/)
 * Orlando - [LinkedIn](https://www.linkedin.com/in/orlando-edwards-jr/)
-* Coel - 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
