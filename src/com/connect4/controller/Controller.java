@@ -94,13 +94,8 @@ public class Controller {
                     if (1 == player.getPlayerID()) choice = computer1.takeTurn(board, player);
                     else choice = computer2.takeTurn(board, player);
                 } else {
-                    if(player.getPlayerID() == 1){
-                        identifier = "X";
-                    }
-                    else {
-                        identifier = "O";
-                    }
-                    System.out.print(player.getName() + " ("+ identifier +") --> ");//prints out player name
+                    identifier = (player.getPlayerID() == 1) ? "X" : "O";
+                    System.out.print(player.getName() + " (" + identifier + ") --> ");//prints out player name
                     choice = player.takeTurn();
                 }
                 if (-2 == choice) endGame(); // terminates game

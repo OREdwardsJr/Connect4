@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class BoardTest {
     public static Board board = new Board();
     public static Player p1 = new Player("Orlando", 1);
-    public static Player p2 = new Player("Shyan", -1);
+    public static Player p2 = new Player("Shyan", 2);
 
     public static void fillBoard() {
         for (int i = board.columnEntries()[0]; i > 0; i--) {
