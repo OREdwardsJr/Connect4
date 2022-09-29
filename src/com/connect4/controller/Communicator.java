@@ -47,7 +47,7 @@ public class Communicator {
         return level;
     }
 
-    public String newPlayerName() {
+    public String newPlayerName() {//dummy commit
         Prompter prompter = new Prompter(new Scanner(System.in));
         boolean quitNewPlayerName = false;
         String playerName = "";
