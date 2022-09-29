@@ -27,7 +27,7 @@ public class Communicator {
 
         boolean quit = false;
         while (!quit) {
-            String selectLevel = prompter.prompt("Select number for difficulty level:\n1-Easy\n2-Medium\n");
+            String selectLevel = prompter.prompt("Select number for difficulty level: \n1-Easy\n2-Medium\n");
 
             switch (selectLevel) {
                 case ("1"):
@@ -41,6 +41,7 @@ public class Communicator {
 
                 default:
                     System.out.println("Invalid input, please provide [1] for Easy, [2] for Medium.");
+                    System.out.println();
             }
         }
         return level;
@@ -61,13 +62,16 @@ public class Communicator {
                     break;
                 case ("cpu"):
                     System.out.println("Invalid entry, for CPU player please press return.");
+                    System.out.println();
                     break;
                 case ("computer"):
                     System.out.println("Invalid entry, for Computer/CPU player please press return.");
+                    System.out.println();
                     break;
                 case("c p u"):case("cp u"):case("c pu"):
                     System.out.println("Invalid entry... but funny, I will allow it.\nHowever this is NOT a Computer/CPU player.\nYou are now player: The-Comedian");
                     playerName=("The-Comedian");
+                    System.out.println();
                     quitNewPlayerName = true;
                     break;
                 default:
@@ -84,7 +88,7 @@ public class Communicator {
         String newGameQuery;
 
         while(!quitLoopNewGame){
-            newGameQuery = prompter.prompt("Would you like to play a new game? [Y-N]:");
+            newGameQuery = prompter.prompt("Would you like to play a new game? [Y-N]: ");
 
             switch (newGameQuery.toLowerCase()){
                 case ("y"):
@@ -97,6 +101,7 @@ public class Communicator {
                     break;
                 default:
                     System.out.println("Invalid entry, please provide [Y] for Yes or [N] for No.");
+                    System.out.println();
             }
         }
         return result;
@@ -108,7 +113,7 @@ public class Communicator {
         String move;
 
         while(!quitLoopTakeTurn){
-            move = prompter.prompt("Select your move [1-7] (-1 to quit game):");
+            move = prompter.prompt("Select your move [1-7] (-1 to quit game): ");
 
             switch (move){
                 case("1"):case("2"):case("3"):case("4"):case("5"):case("6"):case("7"):case("-1"):
@@ -117,6 +122,7 @@ public class Communicator {
                     break;
                 default:
                     System.out.println("Invalid move, please select a number [1-7].");
+                    System.out.println();
             }
         }
 
@@ -124,8 +130,10 @@ public class Communicator {
     }
 
     public void announcePlayers(Player p1, Player p2) {
+        System.out.println();
         System.out.println("Player 1 is: " + p1.getName());
         System.out.println("Player 2 is: " + p2.getName());
+        System.out.println();
     }
 
     public void announceVictory(Player player, boolean winnerDetected) throws IOException {
@@ -134,13 +142,16 @@ public class Communicator {
                 if(player.getPlayerID() == 1) {
                     String playerOneWins = Files.readString(Path.of("images/player1wins.txt"));
                     System.out.println(playerOneWins);
+                    System.out.println();
                 } else {
                     String playerTwoWins = Files.readString(Path.of("images/player2wins.txt"));
                     System.out.println(playerTwoWins);
+                    System.out.println();
                 }
             } else {
                     String tieGame =  Files.readString(Path.of("images/tiegame.txt"));
                 System.out.println(tieGame);
+                System.out.println();
             }
         } catch (IOException e) {
             e.printStackTrace();
