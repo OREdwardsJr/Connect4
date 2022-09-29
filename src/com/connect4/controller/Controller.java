@@ -78,6 +78,7 @@ public class Controller {
         boolean validMove;
         int choice = 0;
         int turns = 0;
+        String identifier;
         boolean startNewRound = true;
         boolean winnerDetected = false;
         Player player = player1;
@@ -93,7 +94,13 @@ public class Controller {
                     if (1 == player.getPlayerID()) choice = computer1.takeTurn(board, player);
                     else choice = computer2.takeTurn(board, player);
                 } else {
-                    System.out.print(player.getName() + "--> ");//prints out player name
+                    if(player.getPlayerID() == 1){
+                        identifier = "X";
+                    }
+                    else {
+                        identifier = "O";
+                    }
+                    System.out.print(player.getName() + " ("+ identifier +") --> ");//prints out player name
                     choice = player.takeTurn();
                 }
                 if (-2 == choice) endGame(); // terminates game
