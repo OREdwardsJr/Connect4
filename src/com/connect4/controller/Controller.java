@@ -105,7 +105,10 @@ public class Controller {
 
             System.out.println();
             Console.clear();
-            if (CPU.equalsIgnoreCase(player.getName())) System.out.println("Computer's choice: " + (choice + 1));
+            if (CPU.equalsIgnoreCase(player.getName())){
+                System.out.println("Computer's choice: " + (choice + 1));
+                System.out.println();
+            }
 
             // Update and print display
             display.update(player, board.columnEntries()[choice], choice);
